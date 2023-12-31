@@ -75,6 +75,6 @@ export async function getPage({
       perPage
     }
   });
-  
+  console.log(res.body.data.Page.pageInfo)
   return res.body.data.Page;
 }

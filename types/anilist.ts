@@ -1,12 +1,24 @@
 import { MediaSort } from "@/lib/constants";
 
-export type AnilistMedia = {
-  id: string;
-  title: {
-    romaji: string,
-    english: string,
-    native: string
+export type CoverImage = {
+  extraLarge: string,
+  large: string,
+  medium: string,
+  color: string,
 }
+
+export type TitleMedia = {
+  romaji: string,
+  english: string,
+  native: string,
+  userPreferred: string
+
+}
+
+export type AnilistMedia = {
+  id: number;
+  title: TitleMedia
+  coverImage: CoverImage
 };
 export type AnilistMediaOperation = {
   data: {

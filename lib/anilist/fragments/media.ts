@@ -1,3 +1,5 @@
+import coverImageFragment from "./image";
+
 const mediaFragment = /* GraphQL */ `
   fragment media on Media {
     id
@@ -5,8 +7,13 @@ const mediaFragment = /* GraphQL */ `
       romaji
       english
       native
+      userPreferred
+    }
+    coverImage {
+      ...coverImage
     }
   }
+  ${coverImageFragment}
 `;
 
 export default mediaFragment;
