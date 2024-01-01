@@ -1,6 +1,6 @@
-import { AnilistMedia, AnilistMediaOperation, AnilistPage, AnilistPageOperation } from "@/types/anilist";
+import { AnilistMedia, AnilistMediaOperation, AnilistPage, AnilistPageOperation, MediaSort } from "@/types/anilist";
 import { getMediaQuery, getPageQuery } from "./queries/media";
-import { ANILIST_ENDPOINT, MediaSort } from "../constants";
+import { ANILIST_ENDPOINT } from "../constants";
 
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
 
@@ -75,6 +75,5 @@ export async function getPage({
       perPage
     }
   });
-  console.log(res.body.data.Page.pageInfo)
   return res.body.data.Page;
 }

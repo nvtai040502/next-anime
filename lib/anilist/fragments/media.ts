@@ -1,3 +1,4 @@
+import streamingEpisodeFragment from "./episode";
 import coverImageFragment from "./image";
 
 const mediaFragment = /* GraphQL */ `
@@ -12,8 +13,12 @@ const mediaFragment = /* GraphQL */ `
     coverImage {
       ...coverImage
     }
+    streamingEpisodes {
+      ...streamingEpisode
+    }
   }
   ${coverImageFragment}
+  ${streamingEpisodeFragment}
 `;
 
 export default mediaFragment;

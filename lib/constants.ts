@@ -1,14 +1,13 @@
+import { MediaSort } from "@/types/anilist"
+
 export const ANILIST_ENDPOINT = "https://graphql.anilist.co"
+export const ANIFY_API = "https://api.anify.tv"
 export const PER_PAGE = 8
 export const FIRST_PAGE = 1
 export const NEAREST_PAGES = 3
 
 
-export type MediaSort = 
-'POPULARITY' | 
-'POPULARITY_DESC' | 
-'TRENDING' | 
-'TRENDING_DESC'
+
 
 export type SortItem = {
   title: string;

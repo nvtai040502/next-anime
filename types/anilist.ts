@@ -1,10 +1,21 @@
-import { MediaSort } from "@/lib/constants";
+export type MediaSort = 
+'POPULARITY' | 
+'POPULARITY_DESC' | 
+'TRENDING' | 
+'TRENDING_DESC'
 
 export type CoverImage = {
   extraLarge: string,
   large: string,
   medium: string,
   color: string,
+}
+
+export type StreamingEpisode = {
+  title: string,
+  url: string,
+  site: string,
+  thumbnail: string,
 }
 
 export type TitleMedia = {
@@ -19,6 +30,7 @@ export type AnilistMedia = {
   id: number;
   title: TitleMedia
   coverImage: CoverImage
+  streamingEpisodes: StreamingEpisode[]
 };
 export type AnilistMediaOperation = {
   data: {

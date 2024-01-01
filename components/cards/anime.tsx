@@ -39,6 +39,10 @@ export function AnimeCard({anime}: AnimeCardProps) {
         <span className="sr-only">{title}</span>
         <CardContent className="space-y-1.5 p-4 ">
           <CardTitle className="line-clamp-1">{title}</CardTitle>
+          <CardDescription>{anime.id}</CardDescription>
+          {/* <CardDescription>{anime.streamingEpisodes[0].title}</CardDescription> */}
+
+
         </CardContent>
       {/* </Link> */}
       
