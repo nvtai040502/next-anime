@@ -4,6 +4,8 @@ import coverImageFragment from "./image";
 const mediaFragment = /* GraphQL */ `
   fragment media on Media {
     id
+    description
+    genres
     title {
       romaji
       english

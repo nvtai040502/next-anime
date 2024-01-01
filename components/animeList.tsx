@@ -16,7 +16,7 @@ import { sorting } from "@/lib/constants"
 import { cn, createUrl } from "@/lib/utils"
 import { AnilistMedia } from "@/types/anilist"
 import { getMedia } from "@/lib/anilist"
-import { AnimeCard } from "./cards/anime"
+import { MediaCard } from "./cards/media"
 
 interface AnimeListProps {
   animeList: AnilistMedia[]
@@ -68,7 +68,7 @@ export function AnimeList({
       </div>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {animeList.map((anime, i) => (
-          <AnimeCard anime={anime} key={i}/>
+          <MediaCard media={anime} key={i}/>
         ))}
       </div>
 

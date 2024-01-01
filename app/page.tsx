@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { getMedia, getPage } from "@/lib/anilist";
-import { PER_PAGE, defaultSort, sorting } from "@/lib/constants";
+import { MAX_ITEMS_CAROUSEL, PER_PAGE, defaultSort, sorting } from "@/lib/constants";
 import { AnimeList } from "@/components/animeList";
 import { searchParamsSchema } from "@/lib/validations/params";
 import { PaginationButton } from "@/components/pagination-button";
@@ -8,6 +8,8 @@ import { type Option } from 'artplayer/types/option';
 import { getEpisodes, getEpisodesWithProviderId, getSources } from "@/lib/anify";
 import Player from "@/components/player";
 import Artplayer from "artplayer";
+import MediaHero from "@/components/media/hero";
+import MediaCarousel from "@/components/carousel/media";
 
 
 interface HomePageProps {
@@ -19,38 +21,24 @@ export default async function HomePage({
   searchParams
 }:HomePageProps
 ) {
-    // const params = searchParamsSchema.parse(searchParams)
-    // const { sortKey } = sorting.find((item) => item.slug === params.sort) || defaultSort;
-    // const page = await getPage({
-    //   sort: sortKey,
-    //   page: params.page,
-    //   perPage: PER_PAGE
-    // })
-    
-    const episodes = await getEpisodes({animeId: "21087", providerId:"gogoanime"})
-    const sources_ep1 = await getSources({watchId: episodes[0].id, providerId: "gogoanime", episodeNumber: episodes[0].number, mediaId: "21087"})
-    console.log(sources_ep1)
-    const source = sources_ep1?.sources.find((item) => item.quality === "720p")
+    const params = searchParamsSchema.parse(searchParams)
+    const { sortKey } = sorting.find((item) => item.slug === params.sort) || defaultSort;
+    const {media, pageInfo} = await getPage({page: params.page, sort: sortKey, perPage: MAX_ITEMS_CAROUSEL})
     return (
-      <div>
-      {sources_ep1 ? (
-        <Player
-          anifySources={sources_ep1}
-          option={{
-              url:source?.url!
-          }}
-          style={{
-              width: '600px',
-              height: '400px',
-              margin: '60px auto 0',
-          }}
-        />
-      ): (
-        <div>
-          Hello
+      <main>
+        <MediaHero media={media[1]} />   
+        <div className="mt-8 space-y-8">
+          <MediaCarousel
+            title="Trending Movies"
+            link="/movie/trending"
+            items={media}
+          />
+          <MediaCarousel
+            title="Trending TV Shows"
+            link="/tv/trending"
+            items={media}
+          />
         </div>
-      )}
-      
-  </div>
+      </main>
     );
 }

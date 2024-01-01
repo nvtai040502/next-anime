@@ -11,12 +11,12 @@ import { AnilistMedia } from "@/types/anilist";
 import { PlaceholderImage } from "../placeholder-image";
  
   
-interface AnimeCardProps {
-  anime: AnilistMedia
+interface MediaCardProps {
+  media: AnilistMedia
 }
-export function AnimeCard({anime}: AnimeCardProps) {
-  const coverImage = selectCoverImage(anime.coverImage)
-  const title = selectTitleMedia(anime.title)
+export function MediaCard({media}: MediaCardProps) {
+  const coverImage = selectCoverImage(media.coverImage)
+  const title = selectTitleMedia(media.title)
   return (
     <Card>
       {/* <Link href={`/product/${anime.handle}`}> */}
@@ -39,7 +39,7 @@ export function AnimeCard({anime}: AnimeCardProps) {
         <span className="sr-only">{title}</span>
         <CardContent className="space-y-1.5 p-4 ">
           <CardTitle className="line-clamp-1">{title}</CardTitle>
-          <CardDescription>{anime.id}</CardDescription>
+          <CardDescription>{media.id}</CardDescription>
           {/* <CardDescription>{anime.streamingEpisodes[0].title}</CardDescription> */}
 
 
