@@ -14,6 +14,7 @@ const MediaCarousel: React.FC<MediaCarouselProps> = ({ items, title, link }) => 
   if (!items.length) return null;
 
   return (
+    
     <MediaCarouselBase title={title} link={link}>
       <MediaCarouselItems items={items} />
     </MediaCarouselBase>

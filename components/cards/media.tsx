@@ -19,7 +19,7 @@ export function MediaCard({media}: MediaCardProps) {
   const title = selectTitleMedia(media.title)
   return (
     <Card>
-      {/* <Link href={`/product/${anime.handle}`}> */}
+      <Link href={`/info/${media.id}`}>
         <CardHeader className="p-0">
           <AspectRatio ratio={4 / 3}>
             {coverImage ? (
@@ -44,7 +44,7 @@ export function MediaCard({media}: MediaCardProps) {
 
 
         </CardContent>
-      {/* </Link> */}
+      </Link>
       
     </Card>
 

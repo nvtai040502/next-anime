@@ -1,8 +1,24 @@
+export type AnilistMedia = {
+  id: number;
+  title: TitleMedia
+  coverImage: CoverImage
+  streamingEpisodes: StreamingEpisode[]
+  type: MediaType
+  description: string
+  genres: string[]
+  averageScore: number
+};
+
 export type MediaType = "ANIME" | "MANGA"
 export type MediaSort = 
   'POPULARITY_DESC' | 
   'TRENDING_DESC' |
   "UPDATED_AT_DESC"
+
+export type MediaList = {
+  title: string
+  media: AnilistMedia[]
+}
 
 export type SortItem = {
   title: string;
@@ -31,15 +47,7 @@ export type TitleMedia = {
   userPreferred: string
 }
 
-export type AnilistMedia = {
-  id: number;
-  title: TitleMedia
-  coverImage: CoverImage
-  streamingEpisodes: StreamingEpisode[]
-  type: MediaType
-  description: string
-  genres: string[]
-};
+
 export type AnilistMediaOperation = {
   data: {
     Media: AnilistMedia;

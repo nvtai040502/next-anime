@@ -3,6 +3,7 @@ type IconProps = React.HTMLAttributes<SVGElement>
 import {
   AlertTriangle,
   ArrowRight,
+  Bell,
   Check,
   ChevronDown,
   ChevronFirst,
@@ -10,22 +11,28 @@ import {
   ChevronLeft,
   ChevronRight,
   Circle,
+  Clapperboard,
   Command,
   CreditCard,
+  Facebook,
   File,
   FileText,
+  Film,
   HelpCircle,
   HomeIcon,
   Image,
   ImageIcon,
+  Instagram,
   Laptop,
   LayoutDashboard,
+  List,
   Loader2,
   LogOut,
   LucideProps,
   Minus,
   Moon,
   MoreVertical,
+  Pencil,
   Pizza,
   Play,
   Plus,
@@ -33,16 +40,27 @@ import {
   Settings,
   SunMedium,
   Trash,
+  TrendingUp,
   Twitter,
   User,
   X,
+  Youtube,
 } from 'lucide-react';
 
 export const Icons = {
-  logo: Command,
   dashboard: LayoutDashboard,
   placeholder: ImageIcon,
   logout: LogOut,
+  tvShow: Clapperboard,
+  movie: Film,
+  trendingUp: TrendingUp,
+  list: List,
+  facebook: Facebook,
+  instagram: Instagram,
+  twitter: Twitter,
+  youtube: Youtube,
+  bell: Bell,
+  edit: Pencil,
   play: Play,
   home: HomeIcon,
   settings: Settings,
@@ -71,6 +89,21 @@ export const Icons = {
   sun: SunMedium,
   moon: Moon,
   laptop: Laptop,
+  logo: ({ ...props }: IconProps) => (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M5.398 0v.006c3.028 8.556 5.37 15.175 8.348 23.596 2.344.058 4.85.398 4.854.398-2.8-7.924-5.923-16.747-8.487-24zm8.489 0v9.63L18.6 22.951c-.043-7.86-.004-15.913.002-22.95zM5.398 1.05V24c1.873-.225 2.81-.312 4.715-.398v-9.22z"
+      ></path>
+    </svg>
+  ),
   cart: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -105,22 +138,7 @@ export const Icons = {
       />
     </svg>
   ),
-  twitter: (props: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
-      <path
-        fill="currentColor"
-        d="M21.543 7.104c.015.211.015.423.015.636 0 6.507-4.954 14.01-14.01 14.01v-.003A13.94 13.94 0 0 1 0 19.539a9.88 9.88 0 0 0 7.287-2.041 4.93 4.93 0 0 1-4.6-3.42 4.916 4.916 0 0 0 2.223-.084A4.926 4.926 0 0 1 .96 9.167v-.062a4.887 4.887 0 0 0 2.235.616A4.928 4.928 0 0 1 1.67 3.148a13.98 13.98 0 0 0 10.15 5.144 4.929 4.929 0 0 1 8.39-4.49 9.868 9.868 0 0 0 3.128-1.196 4.941 4.941 0 0 1-2.165 2.724A9.828 9.828 0 0 0 24 4.555a10.019 10.019 0 0 1-2.457 2.549z"
-      />
-    </svg>
-  ),
-  facebook: ({ ...props }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" {...props}>
-      <path
-        fill="currentColor"
-        d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
-      />
-    </svg>
-  ),
+ 
   discord: ({ ...props }: IconProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" {...props}>
       <path

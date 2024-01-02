@@ -8,8 +8,11 @@ import { type Option } from 'artplayer/types/option';
 import { getEpisodes, getEpisodesWithProviderId, getSources } from "@/lib/anify";
 import Player from "@/components/player";
 import Artplayer from "artplayer";
-import MediaHero from "@/components/media/hero";
-import MediaCarousel from "@/components/carousel/media";
+import MediaCarousel from "@/components/carousel/media-carousel";
+import { cn } from "@/lib/utils";
+import MediaListContainer from "@/components/media/list-container";
+import { MediaList } from "@/types/anilist";
+import HeroCarousel from "@/components/carousel/hero-carousel";
 
 
 interface HomePageProps {
@@ -21,24 +24,34 @@ export default async function HomePage({
   searchParams
 }:HomePageProps
 ) {
-    const params = searchParamsSchema.parse(searchParams)
-    const { sortKey } = sorting.find((item) => item.slug === params.sort) || defaultSort;
-    const {media, pageInfo} = await getPage({page: params.page, sort: sortKey, perPage: MAX_ITEMS_CAROUSEL})
+    
+    const {media: mediaTrending} = await getPage({page: 1, sort: "TRENDING_DESC", perPage: MAX_ITEMS_CAROUSEL})
+    const {media: mediaPopular} = await getPage({page: 1, sort: "POPULARITY_DESC", perPage: MAX_ITEMS_CAROUSEL})
+    const {media: mediaNewest} = await getPage({page: 1, sort: "UPDATED_AT_DESC", perPage: MAX_ITEMS_CAROUSEL})
+    const mediaList: MediaList[] = [
+      {
+        title: "Trending Now",
+        media: mediaTrending,
+      },
+      {
+        title: "Popularity",
+        media: mediaPopular,
+      },
+      {
+        title: "Newest",
+        media: mediaNewest,
+      },
+    ]
+
+
+    
     return (
-      <main>
-        <MediaHero media={media[1]} />   
-        <div className="mt-8 space-y-8">
-          <MediaCarousel
-            title="Trending Movies"
-            link="/movie/trending"
-            items={media}
-          />
-          <MediaCarousel
-            title="Trending TV Shows"
-            link="/tv/trending"
-            items={media}
-          />
+      <section>
+        <div className="">
+          <HeroCarousel items={mediaTrending} />   
+          <MediaListContainer items={mediaList} />
+            
         </div>
-      </main>
+      </section>
     );
 }

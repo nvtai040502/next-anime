@@ -10,13 +10,15 @@ export default function MediaCarouselBase({
   link?: string;
 }) {
   return (
-    <div className="my-global">
-      <div className="px-global mb-5 text-lg lg:text-xl flex items-center">
-        <span>{title}</span>
+    <div className="container w-full max-w-screen-2xl space-y-1 sm:space-y-2.5">
+      <div className="flex items-center gap-4">
+        <h2 className="text-lg font-semibold text-white/90 transition-colors hover:text-white sm:text-xl ">
+            {title}
+          </h2>
         {link && (
           <Link
             href={link}
-            className="text-sm text-blue-500 font-semibold ml-4"
+            className="text-sm text-blue-500 font-semibold"
           >
             Explore More
           </Link>

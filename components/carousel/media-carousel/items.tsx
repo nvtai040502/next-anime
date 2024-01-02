@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/carousel';
 import { AnilistMedia } from '@/types/anilist';
 import React from 'react';
-import { MediaCard } from '../cards/media';
+import { MediaCard } from '../../cards/media';
 import { MAX_ITEMS_CAROUSEL } from '@/lib/constants';
 
 interface MediaCarouselItemsProps {
@@ -22,9 +22,7 @@ const MediaCarouselItems: React.FC<MediaCarouselItemsProps> = ({ items, maxItems
   const itemsCarousel = items.slice(0, maxItems);
   return (
     <Carousel className="w-full">
-      
       <CarouselContent>
-        
           {itemsCarousel.map((item) => (
             <CarouselItem key={item.id} className="sm:basis-1/3 md:basis-1/5 lg:basis-1/6">
               <MediaCard media={item}/>
@@ -32,8 +30,7 @@ const MediaCarouselItems: React.FC<MediaCarouselItemsProps> = ({ items, maxItems
           ))}
       </CarouselContent>
         
-      <CarouselPrevious />
-      <CarouselNext />
+      
     </Carousel>
   );
 };
