@@ -7,6 +7,7 @@ const mediaFragment = /* GraphQL */ `
     description
     genres
     averageScore
+    type
     title {
       romaji
       english

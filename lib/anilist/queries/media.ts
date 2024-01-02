@@ -11,7 +11,7 @@ export const getMediaQuery = /* GraphQL */ `
 
 
 export const getPageQuery = /* GraphQL */ `
-  query getPage ($page: Int, $perPage: Int, $sort: [MediaSort]) {
+  query getPage ($page: Int, $perPage: Int, $sort: [MediaSort], $type: MediaType) {
     Page (page: $page, perPage: $perPage) {
       pageInfo {
         total
@@ -20,7 +20,7 @@ export const getPageQuery = /* GraphQL */ `
         hasNextPage
         perPage
       }
-      media (sort: $sort) {
+      media (sort: $sort, type: $type) {
         ...media
       }
     }

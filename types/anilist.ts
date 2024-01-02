@@ -1,4 +1,4 @@
-export type AnilistMedia = {
+export type Media = {
   id: number;
   title: TitleMedia
   coverImage: CoverImage
@@ -15,10 +15,7 @@ export type MediaSort =
   'TRENDING_DESC' |
   "UPDATED_AT_DESC"
 
-export type MediaList = {
-  title: string
-  media: AnilistMedia[]
-}
+
 
 export type SortItem = {
   title: string;
@@ -48,9 +45,9 @@ export type TitleMedia = {
 }
 
 
-export type AnilistMediaOperation = {
+export type MediaOperation = {
   data: {
-    Media: AnilistMedia;
+    Media: Media;
   };
   variables: {
     id: number;
@@ -65,20 +62,21 @@ export type PageInfo = {
   perPage: number
 };
 
-export type AnilistPage = {
+export type Page = {
   pageInfo: PageInfo,
-  media: AnilistMedia[]
+  media: Media[]
   
 };
 
-export type AnilistPageOperation = {
+export type PageOperation = {
   data: {
-    Page: AnilistPage
+    Page: Page
   },
   variables: {
     sort: MediaSort,
     page: number,
     perPage: number
+    type: MediaType
   };
 }
 

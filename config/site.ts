@@ -34,13 +34,13 @@ export const siteConfig: SiteConfig = {
       icon: "home"
     },
     {
-      title: "TV Shows",
-      href: "/tv-shows",
+      title: "Anime",
+      href: "/anime",
       icon: "tvShow"
     },
     {
-      title: "Movies",
-      href: "/movies",
+      title: "Manga",
+      href: "/manga",
       icon: "movie",
     },
     {
