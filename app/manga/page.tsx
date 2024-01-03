@@ -1,43 +1,26 @@
 import React, { Suspense } from "react";
-import { getMedia, getPage } from "@/lib/anilist";
-import { MAX_ITEMS_CAROUSEL, PER_PAGE, defaultSort, sorting } from "@/lib/constants";
-import { AnimeList } from "@/components/animeList";
+import HeroMediaPage from "@/components/layout/pages/media-hero";
 import { searchParamsSchema } from "@/lib/validations/params";
-import { PaginationButton } from "@/components/pagination-button";
-import { type Option } from 'artplayer/types/option';
-import { getEpisodes, getEpisodesWithProviderId, getSources } from "@/lib/anify";
-import Player from "@/components/player";
-import Artplayer from "artplayer";
-import MediaCarousel from "@/components/carousel/media-carousel";
-import { cn } from "@/lib/utils";
-import MediaListContainer from "@/components/media/list-container";
-import HeroCarousel from "@/components/carousel/hero-carousel";
-import { MediaListWithSortType } from "@/types";
-import { getMediaListTrending, getMediaListWithSortTypeList } from "@/lib/fetchers";
+import { defaultSort, sorting } from "@/lib/constants";
+import BodyMediaPage from "@/components/layout/pages/media-body";
+import { ProductCardSkeleton } from "@/components/skeletons/hero";
 
-
-interface MangePageProps {
+interface MangaPageProps {
   searchParams: {
-
+    [key: string]: string | string[] | undefined
   }
 }
-export default async function MangePage({
-  searchParams
-}:MangePageProps
-) {
-    
-  
-    const mangaListTrending = await getMediaListTrending(MAX_ITEMS_CAROUSEL, "MANGA")
-    const mangaListWithSortTypeList = await getMediaListWithSortTypeList("MANGA", MAX_ITEMS_CAROUSEL)
-    
+export default async function MangaPage({searchParams}:MangaPageProps) {
+  const params = searchParamsSchema.parse(searchParams)
+  const {sortKey} = sorting.find((item) => item.slug === params.sort) || defaultSort;
     return (
-      <section>
-        <div className="">
-          
-          <HeroCarousel mediaList={mangaListTrending} />   
-          <MediaListContainer items={mangaListWithSortTypeList} />
-            
-        </div>
+      <section className="mt-24">
+       
+        <HeroMediaPage />
+        <Suspense fallback={<ProductCardSkeleton />}>
+          <BodyMediaPage sort={sortKey} page={params.page} mediaType="MANGA"/>
+        </Suspense>
+        
       </section>
     );
 }

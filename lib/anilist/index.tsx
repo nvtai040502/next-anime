@@ -1,5 +1,5 @@
 import { getMediaQuery, getPageQuery } from "./queries/media";
-import { ANILIST_ENDPOINT, MAX_ITEMS_CAROUSEL } from "../constants";
+import { ANILIST_ENDPOINT } from "../constants";
 import { Media, MediaOperation, MediaSort, MediaType, Page, PageOperation } from "@/types/anilist";
 
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
@@ -64,13 +64,13 @@ export async function getMedia({
 
 export async function getPage({
   page=1, 
-  perPage=MAX_ITEMS_CAROUSEL,
+  perPage,
   sort,
   type
 }:{
   sort: MediaSort,
   page?: number,
-  perPage?: number,
+  perPage: number,
   type: MediaType
 }): Promise<Page> {
   const res = await anilistFetch<PageOperation>({

@@ -1,10 +1,10 @@
 import { cn, selectCoverImage, selectTitleMedia } from "@/lib/utils";
-import { AnilistMedia } from "@/types/anilist";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { Icons } from "../icons";
+import { Media } from "@/types/anilist";
 
-const MediaHeroCard = ({item}: {item: AnilistMedia}) => {
+const MediaHeroCard = ({item}: {item: Media}) => {
   const image = selectCoverImage(item.coverImage)
   const title = selectTitleMedia(item.title)
   return ( 

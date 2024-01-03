@@ -18,7 +18,7 @@ export function ProductCardSkeleton({
     >
       <CardHeader className="border-b p-0">
         <AspectRatio ratio={4 / 3}>
-          <PlaceholderImage className="rounded-none" isSkeleton asChild />
+          <PlaceholderImage className="rounded-none bg-red-500" isSkeleton asChild />
         </AspectRatio>
       </CardHeader>
       <CardContent className="space-y-2.5 p-4">

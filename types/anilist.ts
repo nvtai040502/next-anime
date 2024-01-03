@@ -17,11 +17,7 @@ export type MediaSort =
 
 
 
-export type SortItem = {
-  title: string;
-  slug: string | null;
-  sortKey: MediaSort;
-};
+
 
 export type CoverImage = {
   extraLarge: string,

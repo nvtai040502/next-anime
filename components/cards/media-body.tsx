@@ -7,14 +7,14 @@ import { Button, buttonVariants } from "../ui/button";
 import { Eye } from "lucide-react";
 
 import { useState, useEffect } from 'react'
-import { AnilistMedia } from "@/types/anilist";
 import { PlaceholderImage } from "../placeholder-image";
+import { Media } from "@/types/anilist";
  
   
-interface MediaCardProps {
-  media: AnilistMedia
+interface MediaCardBodyProps {
+  media: Media
 }
-export function MediaCard({media}: MediaCardProps) {
+export function MediaCardBody({media}: MediaCardBodyProps) {
   const coverImage = selectCoverImage(media.coverImage)
   const title = selectTitleMedia(media.title)
   return (
