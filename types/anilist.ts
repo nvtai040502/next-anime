@@ -1,13 +1,31 @@
+
 export type Media = {
   id: number;
   title: TitleMedia
   coverImage: CoverImage
-  streamingEpisodes: StreamingEpisode[]
+  streamingEpisodes: AnilistEpisode[]
   type: MediaType
   description: string
   genres: string[]
   averageScore: number
+  bannerImage: string
+  watchId: string // take from Anify
+  reviews: {
+    nodes: Review[]
+  }
 };
+
+export type MediaTrend = {
+  date: number
+  trending: number
+  averageScore: number
+  popularity: number
+  episode: number
+  releasing: boolean
+  mediaId_not: number
+  mediaId_in: number
+}
+
 
 export type MediaType = "ANIME" | "MANGA"
 export type MediaSort = 
@@ -15,7 +33,18 @@ export type MediaSort =
   'TRENDING_DESC' |
   "UPDATED_AT_DESC"
 
-
+export type Review = {
+  id: number
+  summary: string
+  body: string
+  rating: number
+  ratingAmount: number
+  score: number
+  user: {
+    id: number,
+    name: string
+  }
+}
 
 
 
@@ -26,7 +55,7 @@ export type CoverImage = {
   color: string,
 }
 
-export type StreamingEpisode = {
+export type AnilistEpisode = {
   title: string,
   url: string,
   site: string,
@@ -47,6 +76,15 @@ export type MediaOperation = {
   };
   variables: {
     id: number;
+
+  };
+};
+export type MediaTrendOperation = {
+  data: {
+    MediaTrend: MediaTrend;
+  };
+  variables: {
+    mediaId: number;
   };
 };
 

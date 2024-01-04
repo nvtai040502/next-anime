@@ -5,6 +5,7 @@ export type MediaListWithSortType = {
   mediaList: Media[]
 }
 
+
 export type SortItem = {
   title: string;
   slug: string | null;

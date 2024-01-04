@@ -25,7 +25,7 @@ export function SiteHeader() {
     <header
       aria-label="Header"
       className={cn(
-        "fixed top-0 z-40 w-full",
+        "sticky top-0 z-40 w-full",
         isScrolled ? "bg-neutral-900 shadow-md" : "bg-transparent"
       )}
     >

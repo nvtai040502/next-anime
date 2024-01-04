@@ -1,5 +1,6 @@
 import streamingEpisodeFragment from "./episode";
 import coverImageFragment from "./image";
+import reviewFragment from "./review";
 
 const mediaFragment = /* GraphQL */ `
   fragment media on Media {
@@ -7,7 +8,13 @@ const mediaFragment = /* GraphQL */ `
     description
     genres
     averageScore
+    bannerImage
     type
+    reviews {
+      nodes {
+        ...review
+      }
+    }
     title {
       romaji
       english
@@ -23,6 +30,7 @@ const mediaFragment = /* GraphQL */ `
   }
   ${coverImageFragment}
   ${streamingEpisodeFragment}
+  ${reviewFragment}
 `;
 
 export default mediaFragment;

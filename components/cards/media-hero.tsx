@@ -3,9 +3,9 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import { Icons } from "../icons";
 import { Media } from "@/types/anilist";
+import WatchOrReadNowButton from "../watch-read-now";
 
 const MediaHeroCard = ({item}: {item: Media}) => {
-  const image = selectCoverImage(item.coverImage)
   const title = selectTitleMedia(item.title)
   return ( 
     <section className="flex justify-center items-center h-screen">
@@ -18,7 +18,7 @@ const MediaHeroCard = ({item}: {item: Media}) => {
               )}
             />
             <Image
-              src={image}
+              src={item.bannerImage}
               alt={title}
               className="h-auto w-full object-cover"
               fill
@@ -40,17 +40,8 @@ const MediaHeroCard = ({item}: {item: Media}) => {
             >
             </p>
             <div className="flex items-center space-x-2 pt-1.5">
-              <Button
-                aria-label="Play video"
-                className="h-auto gap-1.5 rounded"
-                
-              >
-                <Icons.play
-                  className="h-5 w-5 fill-current"
-                  aria-hidden="true"
-                />
-                Play
-              </Button>
+              <WatchOrReadNowButton mediaId={String(item.id)} mediaType={item.type} />
+
               <Button
                 aria-label="Open show's details modal"
                 variant="outline"

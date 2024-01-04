@@ -1,8 +1,36 @@
+import coverImageFragment from "../fragments/image";
 import mediaFragment from "../fragments/media";
+
+export const getRelatedMediaQuery = /* GraphQL */ `
+  query GetRelatedMedia($id: Int) {
+    Media(id: $id) {
+      relations {
+        edges {
+          relationType
+          node {
+            id
+            title {
+              romaji
+              english
+              native
+              userPreferred
+            }
+            type
+            coverImage {
+              ...coverImage
+            }
+          }
+        }
+      }
+    }
+  }
+  ${coverImageFragment}
+
+`;
 
 export const getMediaQuery = /* GraphQL */ `
   query getMedia ($id: Int) {
-    Media(id: $id, type: ANIME) {
+    Media(id: $id) {
       ...media
     }
   }
@@ -27,3 +55,4 @@ export const getPageQuery = /* GraphQL */ `
   }
   ${mediaFragment}
 `;
+

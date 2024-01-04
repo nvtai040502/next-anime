@@ -2,22 +2,16 @@ import React from 'react';
 import MediaCarouselItems from './items';
 import BodyCarouselBase from './base';
 import BodyCarouselItems from './items';
-import { MediaSort, MediaType } from '@/types/anilist';
+import { Media, MediaSort, MediaType } from '@/types/anilist';
 
 interface MediaListBodyCarouselProps {
   title?: React.ReactNode | string
   link?: string
-  mediaType: MediaType
-  sort: MediaSort
-  perPage: number
-  page?: number
+  mediaList: Media[]
 }
 
 const MediaListBodyCarousel = ({ 
-  mediaType,
-  sort,
-  perPage,
-  page,
+  mediaList,
   title, 
   link 
 }: MediaListBodyCarouselProps) => {
@@ -25,7 +19,7 @@ const MediaListBodyCarousel = ({
   return (
     
     <BodyCarouselBase title={title} link={link}>
-      <BodyCarouselItems mediaType={mediaType} sort={sort} perPage={perPage} page={page} />
+      <BodyCarouselItems mediaList={mediaList} />
     </BodyCarouselBase>
   );
 };

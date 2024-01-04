@@ -3,22 +3,23 @@ import React, { useEffect, useRef } from 'react';
 import Artplayer from 'artplayer';
 import Hls from "hls.js"
 import { AnifySources } from '@/types/anify';
+import { AnimeStreamingLink, Source } from '@/types/consumet';
 
 interface RenderVideoSourcesProps extends React.HTMLAttributes<HTMLDivElement> {
-  anifySources: AnifySources
+  sources: Source[]
   option: any
 }
 
 export default function RenderVideoSources({ 
-  anifySources,
+  sources,
   option, 
   ...rest 
 }: RenderVideoSourcesProps
 ) {
-  const source_360 = anifySources?.sources.find((item) => item.quality === "360p")
-  const source_480 = anifySources?.sources.find((item) => item.quality === "480p")
-  const source_720 = anifySources?.sources.find((item) => item.quality === "720p")
-  const source_1080 = anifySources?.sources.find((item) => item.quality === "1080p")
+  const source_360 = sources.find((item) => item.quality === "360p")
+  const source_480 = sources.find((item) => item.quality === "480p")
+  const source_720 = sources.find((item) => item.quality === "720p")
+  const source_1080 = sources.find((item) => item.quality === "1080p")
   
   const artRef = useRef();
 

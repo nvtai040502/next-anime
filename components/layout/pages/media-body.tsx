@@ -1,4 +1,4 @@
-import { MediaListGrid } from "@/components/media-list-grid";
+import { MediaListGrid } from "@/components/grid/media-list-grid";
 import { PaginationButton } from "@/components/pagination-button";
 import { ProductCardSkeleton } from "@/components/skeletons/hero";
 import { getPage } from "@/lib/anilist";

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Media, MediaSort, MediaType } from "@/types/anilist"
-import { MediaCardBody } from "./cards/media-body"
+import { MediaCardBody } from "../cards/media-body"
 
 interface MediaListGridProps {
   mediaList: Media[]

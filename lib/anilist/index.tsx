@@ -1,9 +1,19 @@
-import { getMediaQuery, getPageQuery } from "./queries/media";
+import { getMediaQuery, getPageQuery, getRelatedMediaQuery } from "./queries/media";
 import { ANILIST_ENDPOINT } from "../constants";
-import { Media, MediaOperation, MediaSort, MediaType, Page, PageOperation } from "@/types/anilist";
+import { Media, MediaOperation, MediaSort, MediaTrend, MediaTrendOperation, MediaType, Page, PageOperation } from "@/types/anilist";
+import { getMediaTrendQuery } from "./queries/media-trend";
 
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
 
+type Connection<T> = {
+  edges: Array<Edge<T>>;
+};
+export type Edge<T> = {
+  node: T;
+};
+const removeEdgesAndNodes = (array: Connection<any>) => {
+  return array.edges.map((edge) => edge?.node);
+};
 
 export async function anilistFetch<T>({
   query,
@@ -47,16 +57,41 @@ export async function anilistFetch<T>({
   }
 }
 
+export async function getMediaTrend(mediaId: number | string): Promise<MediaTrend | undefined> {
+  const idToNum = Number(mediaId)
+  const res = await anilistFetch<MediaTrendOperation>({
+    query: getMediaTrendQuery,
+    variables: {
+      mediaId: idToNum
+    }
+  });
+  return res.body.data.MediaTrend;
+}
 
-export async function getMedia({
-  id,
-}:{
-  id: number
-}): Promise<Media | undefined> {
+export async function getRelatedMedia(id: number | string): Promise<Media[]> {
+  const idToNum = Number(id)
+  const res = await anilistFetch<{
+    data: {
+      Media: {
+        relations: Connection<Media>
+      }
+    }, variables: {
+      id: number
+    }}>({
+    query: getRelatedMediaQuery,
+    variables: {
+      id: idToNum,
+    }
+  });
+  return removeEdgesAndNodes(res.body.data.Media.relations);
+}
+
+export async function getMedia(id: number | string): Promise<Media | undefined> {
+  const idToNum = Number(id)
   const res = await anilistFetch<MediaOperation>({
     query: getMediaQuery,
     variables: {
-      id
+      id: idToNum,
     }
   });
   return res.body.data.Media;

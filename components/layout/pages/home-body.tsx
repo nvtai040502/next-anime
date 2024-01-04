@@ -1,6 +1,6 @@
 import { getMediaListWithSortTypeList } from "@/lib/fetchers";
 import { Media, MediaSort, MediaType } from "@/types/anilist";
-import { MAX_ITEMS_CAROUSEL_BODY, MAX_ITEMS_CAROUSEL_HERO } from "@/lib/constants";
+import { FIRST_PAGE, MAX_ITEMS_CAROUSEL_BODY, MAX_ITEMS_CAROUSEL_HERO } from "@/lib/constants";
 import MediaListHeroCarousel from "@/components/carousel/media-list/hero";
 import React, { Suspense } from "react";
 import { ProductCardSkeleton } from "@/components/skeletons/hero";
@@ -9,24 +9,22 @@ import MediaListBodyCarousel from "@/components/carousel/media-list/body";
 
 
 const BodyHomePage = async () => {
-  const perPage = MAX_ITEMS_CAROUSEL_BODY
-  const page = 1
+  const { media: mediaList } = await getPage({ 
+    sort: "TRENDING_DESC", 
+    type: "ANIME", 
+    perPage: MAX_ITEMS_CAROUSEL_BODY, 
+    page: FIRST_PAGE
+   });
   return ( 
-    <div className="w-full space-y-5 sm:space-y-10 -mt-24 relative z-10">
+    <div className="w-full space-y-5 sm:space-y-10 -mt-10 relative z-10">
       <MediaListBodyCarousel
         title="Treding Now"
         link="/" 
-        mediaType={"ANIME"} 
-        perPage={perPage}
-        sort={"TRENDING_DESC"}
-        page={page}
+        mediaList={mediaList}
       />
       <MediaListBodyCarousel
         title="Popularity"
-        mediaType={"ANIME"} 
-        perPage={perPage}
-        sort="POPULARITY_DESC"
-        page={page}
+        mediaList={mediaList}
       />
 
     </div>

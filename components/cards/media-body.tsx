@@ -39,7 +39,7 @@ export function MediaCardBody({media}: MediaCardBodyProps) {
         <span className="sr-only">{title}</span>
         <CardContent className="space-y-1.5 p-4 ">
           <CardTitle className="line-clamp-1">{title}</CardTitle>
-          <CardDescription>{media.id}</CardDescription>
+          <CardDescription>{media.type}</CardDescription>
           {/* <CardDescription>{anime.streamingEpisodes[0].title}</CardDescription> */}
 
 

@@ -59,7 +59,7 @@ export default function MediaListHeroCarousel({
       
       <CarouselContent>
         {mediaList.map((media) => (
-          <CarouselItem key={media.id} className="relative h-[120vh]">
+          <CarouselItem key={media.id} className="relative">
             <MediaHeroCard item={media}/>
           </CarouselItem>
         ))}

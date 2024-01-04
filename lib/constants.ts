@@ -5,6 +5,7 @@ export const MAX_ITEMS_CAROUSEL_BODY = 20
 export const MAX_ITEMS_PER_PAGE = 3
 export const ANILIST_ENDPOINT = "https://graphql.anilist.co"
 export const ANIFY_API = "https://api.anify.tv"
+export const CONSUMET_API = "https://api-consumet-org-six.vercel.app"
 export const FIRST_PAGE = 1
 export const NEAREST_PAGES = 3
 

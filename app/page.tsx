@@ -11,10 +11,13 @@ export default async function HomePage() {
     
     return (
       <>
-        {/* <Suspense fallback={<ProductCardSkeleton />}>
+        <Suspense fallback={<ProductCardSkeleton />}>
           <HeroHomePage />
-        </Suspense> */}
+        </Suspense>
+
+        <Suspense fallback={<ProductCardSkeleton />}>
           <BodyHomePage />
+        </Suspense>
       </>
     );
 }

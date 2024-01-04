@@ -15,43 +15,16 @@ import { Media, MediaSort, MediaType } from '@/types/anilist';
 import React, { useEffect, useState } from 'react';
 
 interface BodyCarouselItemsProps {
-  mediaType: MediaType;
-  perPage: number;
-  sort: MediaSort;
-  page?: number
+  mediaList: Media[]
 }
 
 const BodyCarouselItems = ({ 
-  mediaType,
-  perPage,
-  sort,
-  page
+  mediaList
 }: BodyCarouselItemsProps) => {
   
-  const [mediaList, setMediaList] = useState<Media[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { media } = await getPage({ sort, type: mediaType, perPage, page });
-        setMediaList(media || []);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [mediaType, perPage, sort, page]);
-
-  if (isLoading) {
-    return <ProductCardSkeleton />;
-  }
 
   if (!mediaList.length) {
     return null;
