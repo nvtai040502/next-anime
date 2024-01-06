@@ -10,11 +10,41 @@ const mediaFragment = /* GraphQL */ `
     averageScore
     bannerImage
     type
-    reviews {
+    startDate {
+      year
+      month
+      day
+    }
+    season
+    seasonYear
+    format
+    status
+    episodes
+    duration
+    chapters
+    volumes
+    
+    endDate {
+      year
+      month
+      day
+    }
+    rankings {
+        rank
+        type
+        format
+        year
+        allTime
+        context
+        season
+      }
+    airingSchedule {
       nodes {
-        ...review
+        episode
+        airingAt
       }
     }
+    
     title {
       romaji
       english
@@ -30,7 +60,7 @@ const mediaFragment = /* GraphQL */ `
   }
   ${coverImageFragment}
   ${streamingEpisodeFragment}
-  ${reviewFragment}
+
 `;
 
 export default mediaFragment;

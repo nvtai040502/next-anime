@@ -1,13 +1,13 @@
 "use client"
-import { sorting } from "@/lib/constants";
-import { Icons } from "./icons";
-import { Button } from "./ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { Icons } from "../icons";
+import { Button } from "../ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 import { cn, createUrl } from "@/lib/utils";
+import { MediaSorting } from "@/lib/constants";
 
-const SortingButton = ({side}: {side?: "top" | "right" | "bottom" | "left"}) => {
+const MediaSortButton = ({side}: {side?: "top" | "right" | "bottom" | "left"}) => {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -24,7 +24,7 @@ const SortingButton = ({side}: {side?: "top" | "right" | "bottom" | "left"}) => 
       <DropdownMenuContent align="start" className="w-48" side={side}>
         <DropdownMenuLabel>Sort by</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {sorting.map((item, i) => (
+        {MediaSorting.map((item, i) => (
           <DropdownMenuItem
             key={i}
             className={cn(item.slug === sort && "bg-accent font-bold")}
@@ -48,4 +48,4 @@ const SortingButton = ({side}: {side?: "top" | "right" | "bottom" | "left"}) => 
    );
 }
  
-export default SortingButton;
+export default MediaSortButton;

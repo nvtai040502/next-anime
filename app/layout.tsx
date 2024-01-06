@@ -26,11 +26,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-         <div className="flex min-h-screen flex-col">
+         
           <SiteHeader/>
           <main>{children}</main>
-          <SiteFooter />
-        </div>
+          {/* <SiteFooter /> */}
+       
         </ThemeProvider>
       </body>
     </html>

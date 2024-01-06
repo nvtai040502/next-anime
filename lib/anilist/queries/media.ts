@@ -1,33 +1,17 @@
 import coverImageFragment from "../fragments/image";
 import mediaFragment from "../fragments/media";
+import mediaTrendFragment from "../fragments/media-trend";
 
-export const getRelatedMediaQuery = /* GraphQL */ `
-  query GetRelatedMedia($id: Int) {
-    Media(id: $id) {
-      relations {
-        edges {
-          relationType
-          node {
-            id
-            title {
-              romaji
-              english
-              native
-              userPreferred
-            }
-            type
-            coverImage {
-              ...coverImage
-            }
-          }
-        }
-      }
+
+
+export const getMediaTrendQuery = /* GraphQL */ `
+  query getMediaTrend ($id: Int) {
+    MediaTrend(mediaId: $mediaId) {
+      ...mediaTrend
     }
   }
-  ${coverImageFragment}
-
+  ${mediaTrendFragment}
 `;
-
 export const getMediaQuery = /* GraphQL */ `
   query getMedia ($id: Int) {
     Media(id: $id) {

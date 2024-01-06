@@ -1,4 +1,54 @@
+export type MediaRank = {
+  rank: number,
+  type: MediaRankType,
+  format: string,
+  year: number,
+  allTime: boolean,
+  context: string,
+}
 
+export type Character = {
+  id: number
+  name: {
+    full: string
+    userPreferred: string
+  }
+  image: {
+    large: string
+    medium: string
+  }
+  description: string,
+  gender: string
+  dateOfBirth: FuzzyDate
+  age: string
+  bloodStyle: string
+  isFavourite: boolean
+  isFavouriteBlocked: boolean
+  siteUrl: string
+}
+
+export type FuzzyDate = {
+  year: number
+  month: number
+  day: number
+}
+
+export type CharacterSort = "SEARCH_MATCH" | "FAVOURITES" | "RELEVANCE" | "ID" | "ID_DESC" | "FAVOURITES_DESC"
+export type ReviewSort = "RATING" | "UPDATED_AT"
+export type MediaReview = {
+  id: number
+  summary: string
+  body: string
+  rating: number
+  ratingAmount: number
+  score: number
+  user: {
+    id: number
+    name: string
+  }
+}
+
+export type MediaRankType = "RATED" | "POPULAR"
 export type Media = {
   id: number;
   title: TitleMedia
@@ -9,9 +59,26 @@ export type Media = {
   genres: string[]
   averageScore: number
   bannerImage: string
+  season: "WINTER" | "FALL" | "SPRING" | "SUMMER"
+  seasonYear: number
+  format: "TV" | "TV_SHORT" | "MOVIE" | "SPECIAL" | "OVA" | "ONA" | "MUSIC" | "MANGA" | "NOVEL" | "ONE_SHOT"
+  status: "FINISHED" | "RELEASING" | "NOT_YET_RELEASED" | "CANCELLED" | "HIATUS"
+  episodes: number
+  duration: number
+  chapters: number
+  volumes: number
   watchId: string // take from Anify
   reviews: {
-    nodes: Review[]
+    nodes: MediaReview[]
+  }
+  rankings: MediaRank[]
+  startDate: FuzzyDate
+  endDate: FuzzyDate
+  airingSchedule: {
+    nodes: {
+      episode: number,
+      airingAt: number
+    }[]
   }
 };
 
@@ -32,19 +99,6 @@ export type MediaSort =
   'POPULARITY_DESC' | 
   'TRENDING_DESC' |
   "UPDATED_AT_DESC"
-
-export type Review = {
-  id: number
-  summary: string
-  body: string
-  rating: number
-  ratingAmount: number
-  score: number
-  user: {
-    id: number,
-    name: string
-  }
-}
 
 
 
@@ -68,6 +122,8 @@ export type TitleMedia = {
   native: string,
   userPreferred: string
 }
+
+
 
 
 export type MediaOperation = {

@@ -1,4 +1,6 @@
+import MediaBanner from "@/components/banner/media";
 import GenreCard from "@/components/cards/genre";
+import ReviewCard from "@/components/cards/review";
 import CharactersCarousel from "@/components/carousel/characters";
 import MediaListBodyCarousel from "@/components/carousel/media-list/body";
 import { Description } from "@/components/description";
@@ -7,22 +9,13 @@ import MediaHeroPage from "@/components/pages/media/hero";
 import Ranking from "@/components/ranking";
 import { Separator } from "@/components/ui/separator";
 import WatchOrReadNowButton from "@/components/watch-read-now";
-import { getCharacters, getMedia, getMediaTrend, getRelatedMedia } from "@/lib/anilist";
-import { getAnimeInfo, getMangaInfo } from "@/lib/consumet";
+import { getCharacters, getFewReviewsMedia, getMedia, getMediaTrend, getRelatedMedia } from "@/lib/anilist";
+import { ReviewSorting } from "@/lib/constants";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-interface InfoMediaPageProps {
-  params: {
-    mediaId: string
-  }
-}
-const InfoMediaPage = async ({
-  params,
-
-}:InfoMediaPageProps) => {
-  const media = await getMedia(params.mediaId)
-  if (!media) return notFound()
+const TestPage = async () => {
+  const media = await getMedia("21087")
   if (!media) return notFound()
   const characters = await getCharacters({mediaId: media.id, sort: ["FAVOURITES"]})
   const relatedMedia = await getRelatedMedia(media.id)
@@ -77,7 +70,8 @@ const InfoMediaPage = async ({
 
 </section>
     </>
+
    );
 }
  
-export default InfoMediaPage;
+export default TestPage;

@@ -1,4 +1,4 @@
-import { SortItem } from "@/types"
+import { MediaSortItem, ReviewSortItem } from "@/types"
 import { MediaSort } from "@/types/anilist"
 export const MAX_ITEMS_CAROUSEL_HERO = 10
 export const MAX_ITEMS_CAROUSEL_BODY = 20
@@ -11,15 +11,20 @@ export const NEAREST_PAGES = 3
 
 
 
-export const defaultSort: SortItem = {
+export const defaultMediaSort: MediaSortItem = {
   title: "Popularity",
   slug: null,
   sortKey: "POPULARITY_DESC",
   description: "Popular description"
 };
 
-export const sorting: SortItem[] = [
-  defaultSort,
+export const MediaSorting: MediaSortItem[] = [
+  defaultMediaSort,
   { title: 'Trending Now', description: "Trending description", slug: 'trending', sortKey: "TRENDING_DESC"},
   { title: 'Newest', slug: 'new', sortKey: "UPDATED_AT_DESC"},
 ];
+
+export const ReviewSorting: ReviewSortItem[] = [
+  { title: 'Hightest Rate', sortKey: "RATING"},
+  { title: 'Recent', sortKey: "UPDATED_AT"},
+]

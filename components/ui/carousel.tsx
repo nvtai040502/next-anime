@@ -214,7 +214,7 @@ const CarouselPrevious = React.forwardRef<
       className={cn(
         "absolute  h-8 w-8 rounded-full",
         orientation === "horizontal"
-          ? " top-1/2 -translate-y-1/2"
+          ? "left-4 top-1/2 -translate-y-1/2"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
@@ -243,7 +243,7 @@ const CarouselNext = React.forwardRef<
       className={cn(
         "absolute h-8 w-8 rounded-full",
         orientation === "horizontal"
-          ? "top-1/2 -translate-y-1/2"
+          ? "right-4 top-1/2 -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
@@ -270,7 +270,7 @@ const CarouselDotButton = React.forwardRef<
   const { scrollTo } = useCarousel()
   const dotsArray = new Array(numberOfDots).fill(null);
   return (
-    <div className={cn("absolute rounded-full top-1/2 -translate-y-1/2 left-12 grid gap-10", className)}>
+    <div className={cn("absolute rounded-full left-1/2 translate-y-1/2 rotate-90 bottom-4 grid gap-10", className)}>
       {dotsArray.map((_, index) => (
         <Button
           ref={ref}
@@ -284,7 +284,7 @@ const CarouselDotButton = React.forwardRef<
         >
 
         </Button>
-      ))}
+      )).reverse()}
     </div>
   );
 })

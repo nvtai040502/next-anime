@@ -16,7 +16,7 @@ const BodyHomePage = async () => {
     page: FIRST_PAGE
    });
   return ( 
-    <div className="w-full space-y-5 sm:space-y-10 -mt-10 relative z-10">
+    <div className="w-full space-y-5 sm:space-y-10 pt-24">
       <MediaListBodyCarousel
         title="Treding Now"
         link="/" 

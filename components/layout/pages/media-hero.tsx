@@ -1,5 +1,5 @@
 import { PageHeader, PageHeaderDescription, PageHeaderHeading } from "@/components/page-header";
-import SortingButton from "@/components/sorting-button";
+import SortingButton from "@/components/sorts/review-sort";
 import { defaultSort, sorting } from "@/lib/constants";
 import { MediaSort } from "@/types/anilist";
 

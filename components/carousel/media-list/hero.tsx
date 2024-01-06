@@ -57,7 +57,7 @@ export default function MediaListHeroCarousel({
       }}
     >
       
-      <CarouselContent>
+      <CarouselContent className="">
         {mediaList.map((media) => (
           <CarouselItem key={media.id} className="relative">
             <MediaHeroCard item={media}/>
@@ -69,7 +69,7 @@ export default function MediaListHeroCarousel({
       <CarouselPrevious />
       <CarouselNext />
       
-      <CarouselDotButton numberOfDots={count} currentSlide={current} className="gap-4 left-4"/>
+      <CarouselDotButton numberOfDots={count} currentSlide={current} className="gap-4 "/>
 
     </Carousel>
     

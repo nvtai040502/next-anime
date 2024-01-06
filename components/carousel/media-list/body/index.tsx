@@ -1,6 +1,6 @@
 import React from 'react';
 import MediaCarouselItems from './items';
-import BodyCarouselBase from './base';
+import BodyCarouselBase from '../../_base';
 import BodyCarouselItems from './items';
 import { Media, MediaSort, MediaType } from '@/types/anilist';
 

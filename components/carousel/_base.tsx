@@ -24,7 +24,9 @@ export default function BodyCarouselBase({
           </Link>
         )}
       </div>
-      <div>{children}</div>
+      <div>
+        {children}
+        </div>
     </div>
   );
 }

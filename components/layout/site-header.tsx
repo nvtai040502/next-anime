@@ -4,11 +4,11 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { dashboardConfig } from "@/config/dashboard"
-import { Search } from "../search"
 import React from "react"
 import { siteConfig } from "@/config/site"
 import { Skeleton } from "../ui/skeleton"
 import { MainNav } from "./navbar"
+import { Search } from "lucide-react"
 
 export function SiteHeader() {
   const [isScrolled, setIsScrolled] = React.useState(false)
