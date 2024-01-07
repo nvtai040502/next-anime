@@ -1,5 +1,20 @@
+import { TitleMedia } from "./anilist"
+
 export type MangaProvider = "mangadex" | "mangahere" | "mangakakalot" | "mangapark" | "mangapill" | "mangareader" | "mangasee123"
 export type AnimeProvider = "9anime" |"animefox" | "animepahe" | "bilibili" | "crunchyroll" | "enime" | "gogoanime" | "marin" | "zoro"
+export type EpisodeForPreview = {
+  "id": "string",
+  "title": TitleMedia
+  "image": "string",
+  episodeId: string
+  "episodeTitle": "string",
+  "episodeNumber": "number",
+  "type": "string"
+}
+export type RecentEpisodes = {
+  "currentPage": number,
+  "results": EpisodeForPreview[]
+  }
 
 export type MangaStreamingLink = {
   "img": "string",

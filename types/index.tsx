@@ -1,10 +1,11 @@
 import type { Icons } from "@/components/icons"
-import { Media, MediaSort, ReviewSort } from "./anilist"
+import { Media, MediaSort, ReviewSortKey } from "./anilist"
 export type MediaListWithSortType = {
   title: string
   mediaList: Media[]
 }
 
+export type InfinityScrollType = "Reviews" | "Characters"
 
 export type MediaSortItem = {
   title: string;
@@ -16,7 +17,7 @@ export type MediaSortItem = {
 
 export type ReviewSortItem = {
   title: string;
-  sortKey: ReviewSort;
+  sortKey: ReviewSortKey;
   description?: string
 };
 

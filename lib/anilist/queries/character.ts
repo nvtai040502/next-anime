@@ -1,28 +1,29 @@
-export const getMediaCharactersPageQuery = /* GraphQL */ `
-  query getMediaCharacters($mediaId: Int, $perPage: Int, $sort: [CharacterSort]) {
-  Media(id: $mediaId) {
-    characters(perPage: $perPage, sort: $sort) {
-      pageInfo {
-        total
-        currentPage
-        lastPage
-        hasNextPage
-        perPage
-      }
-      edges {
-        node {
-          id
-          name {
-            full
-            userPreferred
+import characterFragment from "../fragments/character";
+import voiceActorFragment from "../fragments/voice-actor";
+
+export const getCharactersQuery = /* GraphQL */ `
+  query GetCharacters($mediaId: Int, $page: Int, $perPage: Int, $sort: [CharacterSort]) {
+    Media(id: $mediaId) {
+      characters(page: $page, perPage: $perPage, sort: $sort) {
+        pageInfo {
+          total
+          perPage
+          currentPage
+          lastPage
+          hasNextPage
+        }
+        edges {
+          node {
+            ...character
           }
-          image {
-            large
-            medium
+          role
+          voiceActors {
+            ...voiceActor
           }
         }
       }
     }
   }
-}
+  ${characterFragment}
+  ${voiceActorFragment}
 `;

@@ -1,4 +1,4 @@
-import { MAX_ITEMS_CAROUSEL_HERO, defaultSort, sorting } from "@/lib/constants";
+import { MAX_ITEMS_CAROUSEL_HERO } from "@/lib/constants";
 import HeroCarousel from "@/components/carousel/media-list/hero";
 import { getMediaListTrending, getMediaListWithSortTypeList } from "@/lib/fetchers";
 import { ProductCardSkeleton } from "@/components/skeletons/hero";

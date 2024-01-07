@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { ReviewSorting } from "@/lib/constants";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuSubContent, DropdownMenuTrigger } from "../ui/dropdown-menu";
-import { type ReviewSort } from "@/types/anilist";
+import { type ReviewSortKey } from "@/types/anilist";
 import { Button } from "../ui/button";
 import { Icons } from "../icons";
 
 interface ReviewSortButtonProps {
   side?: "top" | "right" | "bottom" | "left";
-  setCurrentSortKey: (sortKey: ReviewSort) => void;
-  currenSortKey: ReviewSort
+  setCurrentSortKey: (sortKey: ReviewSortKey) => void;
+  currenSortKey: ReviewSortKey
 }
 
 const ReviewSortButton = ({ side, currenSortKey, setCurrentSortKey }: ReviewSortButtonProps) => {

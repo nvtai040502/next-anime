@@ -1,5 +1,5 @@
-const characterFragment = /* GraphQL */ `
-  fragment character on Character {
+const voiceActorFragment = /* GraphQL */ `
+  fragment voiceActor on Staff {
     id
     name {
       first
@@ -7,6 +7,7 @@ const characterFragment = /* GraphQL */ `
       full
       userPreferred
     }
+    languageV2
     image {
       large
       medium
@@ -18,6 +19,13 @@ const characterFragment = /* GraphQL */ `
       month
       day
     }
+    yearsActive
+    homeTown
+    dateOfDeath {
+      year
+      month
+      day
+    }
     age 
     bloodType
     isFavourite
@@ -25,4 +33,4 @@ const characterFragment = /* GraphQL */ `
   }
 `;
 
-export default characterFragment;
+export default voiceActorFragment;

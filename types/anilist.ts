@@ -6,8 +6,44 @@ export type MediaRank = {
   allTime: boolean,
   context: string,
 }
+export type CharacterRole = "MAIN" | "SUPPORTING" | "BACKGROUND"
 
-export type Character = {
+export type Name = {
+  first: string
+  middle: string
+  last: string
+  full: string
+  userPreferred: string
+}
+
+export type VoiceActor = {
+  name: Name
+  id: number
+  languageV2: string
+  image: {
+    large: string
+    medium: string
+  }
+  description: string
+  primaryOccupations: string[]
+  gender: string
+  dateOfBirth: FuzzyDate
+  dateOfDeath: FuzzyDate
+  age: number
+  yearsActive: number[]
+  homeTown: string
+  bloodType: string
+  isFavourite: boolean
+  isFavouriteBlocked: boolean
+}
+
+export type Character = Omit<AnilistCharacter, 'role' | 'voiceActors'> & {
+  role: CharacterRole;
+  voiceActors: VoiceActor[];
+};
+
+export type AnilistCharacter = {
+  
   id: number
   name: {
     full: string
@@ -34,9 +70,14 @@ export type FuzzyDate = {
 }
 
 export type CharacterSort = "SEARCH_MATCH" | "FAVOURITES" | "RELEVANCE" | "ID" | "ID_DESC" | "FAVOURITES_DESC"
-export type ReviewSort = "RATING" | "UPDATED_AT"
-export type MediaReview = {
+export type ReviewSortKey = "RATING" | "UPDATED_AT"
+
+export type Review = AnilistReview
+export type AnilistReview = {
   id: number
+  createdAt: number
+  updatedAt: number
+  private: boolean
   summary: string
   body: string
   rating: number
@@ -68,9 +109,6 @@ export type Media = {
   chapters: number
   volumes: number
   watchId: string // take from Anify
-  reviews: {
-    nodes: MediaReview[]
-  }
   rankings: MediaRank[]
   startDate: FuzzyDate
   endDate: FuzzyDate

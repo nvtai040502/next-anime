@@ -1,6 +1,6 @@
 import axios from "axios";
 import { CONSUMET_API } from "../constants";
-import { AnimeInfo, AnimeProvider, AnimeStreamingLink, MangaInfo, MangaProvider, MangaStreamingLink } from "@/types/consumet";
+import { AnimeInfo, AnimeProvider, AnimeStreamingLink, MangaInfo, MangaProvider, MangaStreamingLink, RecentEpisodes } from "@/types/consumet";
 
 export const getMangaInfo = async ({
   mangaId,
@@ -50,6 +50,31 @@ export const getAnimeStreamingLink = async ({
 
   try {
     const { data }: {data: AnimeStreamingLink} = await axios.get(`${CONSUMET_API}/${url}`);
+    return data;
+
+  } catch (error) {
+    console.error("Error fetching details:", error);
+    return undefined;
+  }
+};
+
+export const getRecentEpisodes = async ({
+  page=1,
+  perPage,
+  provider="gogoanime"
+}: {
+  page?: number
+  perPage: number
+  provider?: AnimeProvider
+}): Promise<RecentEpisodes | undefined> => {
+  const url = `meta/anilist/recent-episodes`
+
+  try {
+    const { data }: {data: RecentEpisodes} = await axios.get(`${CONSUMET_API}/${url}`, { params: { 
+      page,
+      perPage,
+      provider 
+    } });
     return data;
 
   } catch (error) {

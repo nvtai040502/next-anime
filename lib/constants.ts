@@ -1,5 +1,8 @@
 import { MediaSortItem, ReviewSortItem } from "@/types"
 import { MediaSort } from "@/types/anilist"
+export const MAX_ITEMS_FOR_PREVIEW = 6
+export const THRESHOLD_INFINITY_SCROLL = 100
+export const MAX_ITEMS_INFINITY_SCROLL = 6
 export const MAX_ITEMS_CAROUSEL_HERO = 10
 export const MAX_ITEMS_CAROUSEL_BODY = 20
 export const MAX_ITEMS_PER_PAGE = 3

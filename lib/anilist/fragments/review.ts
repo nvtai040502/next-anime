@@ -6,6 +6,10 @@ const reviewFragment = /* GraphQL */ `
     rating
     ratingAmount
     score
+    createdAt
+    updatedAt
+    userRating
+    private
     user {
       id
       name

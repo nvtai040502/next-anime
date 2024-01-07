@@ -4,12 +4,11 @@ import ReviewCard from "@/components/cards/review";
 import CharactersCarousel from "@/components/carousel/characters";
 import MediaListBodyCarousel from "@/components/carousel/media-list/body";
 import { Description } from "@/components/description";
-import MediaBodyPage from "@/components/pages/media/body";
 import MediaHeroPage from "@/components/pages/media/hero";
 import Ranking from "@/components/ranking";
 import { Separator } from "@/components/ui/separator";
 import WatchOrReadNowButton from "@/components/watch-read-now";
-import { getCharacters, getFewReviewsMedia, getMedia, getMediaTrend, getRelatedMedia } from "@/lib/anilist";
+import { getCharacters, getFewReviewsMedia, getMedia, getMediaTrend, getFranchise } from "@/lib/anilist";
 import { ReviewSorting } from "@/lib/constants";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -18,7 +17,7 @@ const TestPage = async () => {
   const media = await getMedia("21087")
   if (!media) return notFound()
   const characters = await getCharacters({mediaId: media.id, sort: ["FAVOURITES"]})
-  const relatedMedia = await getRelatedMedia(media.id)
+  const relatedMedia = await getFranchise(media.id)
   return ( 
     <>
   <MediaHeroPage />
@@ -66,7 +65,6 @@ const TestPage = async () => {
   <MediaListBodyCarousel mediaList={relatedMedia} title="Hello" />
   <CharactersCarousel characters={characters}/>
 
-  <MediaBodyPage mediaId={media.id}/>
 
 </section>
     </>

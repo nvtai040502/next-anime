@@ -1,10 +1,10 @@
 import { getMediaQuery, getPageQuery } from "./queries/media";
 import { ANILIST_ENDPOINT } from "../constants";
-import { Character, CharacterSort, Media, MediaOperation, MediaReview, MediaSort, MediaTrend, MediaTrendOperation, MediaType, Page, PageOperation, ReviewSort } from "@/types/anilist";
+import { AnilistCharacter, AnilistReview, Character, CharacterRole, CharacterSort, Media, MediaOperation, MediaSort, MediaTrend, MediaTrendOperation, MediaType, Page, PageInfo, PageOperation, Review, ReviewSortKey, VoiceActor } from "@/types/anilist";
 import { getMediaTrendQuery } from "./queries/media-trend";
-import { getMediaReviewsPageQuery } from "./queries/review";
-import { getMediaCharactersPageQuery } from "./queries/character";
-import { getRelatedMediaQuery } from "./queries/related-media";
+import { getReviewsQuery } from "./queries/review";
+import { getFranchiseQuery } from "./queries/franchise";
+import { getCharactersQuery } from "./queries/character";
 
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
 
@@ -14,6 +14,7 @@ type Connection<T> = {
 export type Edge<T> = {
   node: T;
 };
+
 const removeEdgesAndNodes = (array: Connection<any>) => {
   return array.edges.map((edge) => edge?.node);
 };
@@ -40,22 +41,13 @@ export async function anilistFetch<T>({
         ...(query && { query }),
         ...(variables && { variables })
       }),
+     
     });
 
     const body = await result.json();
 
     if (body.errors) {
-      const errorReason = body.errors[0]?.extensions?.code;
-
-      if (errorReason === 'INVALID_REQUEST') {
-        throw body.errors[0]; // Throwing the error for syntax-related issues
-      }
-
-      // Returning an object with error details for other kinds of errors
-      return {
-        status: result.status,
-        body: body.errors[0]
-      };
+      throw body.errors[0];
     }
 
     return {
@@ -70,59 +62,104 @@ export async function anilistFetch<T>({
   }
 }
 export async function getCharacters({
-  mediaId, 
-  sort
+  mediaId,
+  page,
+  perPage, 
+  sort=["FAVOURITES_DESC"]
 }:{
   mediaId: number | string, 
-  sort: CharacterSort[]
-}): Promise<Character[]> {
+  perPage: number
+  page: number
+  sort?: CharacterSort[]
+}): Promise<{
+  pageInfo: PageInfo
+  characters: Character[]
+}> {
   const idToNum = Number(mediaId)
   const res = await anilistFetch<{
     data: {
-      Media: {characters: Connection<Character>}
+      Media: {characters: {
+        pageInfo: PageInfo,
+        edges: {
+          node: AnilistCharacter,
+          role: CharacterRole,
+          voiceActors: VoiceActor[]
+        }[]
+      }}
     },
     variables: {
       mediaId: number
-      perPage: number
       sort: CharacterSort[]
+      page: number
+      perPage: number
     }
   }>({
-    query: getMediaCharactersPageQuery,
+    query: getCharactersQuery,
     variables: {
       mediaId: idToNum,
-      perPage: 4,
-      sort
+      sort,
+      perPage,
+      page
     }
   });
-  return removeEdgesAndNodes(res.body.data.Media.characters);
+  const { pageInfo, edges } = res.body.data.Media.characters;
+  const characters = edges.map((edge) => {
+    const { node, role, voiceActors } = edge;
+    return { ...node, role, voiceActors };
+  });
+
+  return { pageInfo, characters };
 }
 
-export async function getFewReviewsMedia({
+export async function getReviews({
   mediaId, 
+  limit,
+  page,
+  perPage,
   sort
 }:{
-  mediaId: number | string, 
-  sort: ReviewSort[]
-}): Promise<MediaReview[]> {
+  mediaId: number | string,
+  limit?: number,
+  page: number,
+  perPage: number 
+  sort: ReviewSortKey[]
+}): Promise<{
+  pageInfo: PageInfo
+  reviews: Review[]
+}> {
   const idToNum = Number(mediaId)
   const res = await anilistFetch<{
     data: {
-      Page: {reviews: MediaReview[]}
+      Media: {reviews: {
+        pageInfo: PageInfo,
+        edges: {
+          node: AnilistReview,
+        }[]
+      }}
     },
     variables: {
       mediaId: number
+      sort: ReviewSortKey[]
+      limit?: number
+      page: number
       perPage: number
-      sort: ReviewSort[]
     }
   }>({
-    query: getMediaReviewsPageQuery,
+    query: getReviewsQuery,
     variables: {
       mediaId: idToNum,
-      perPage: 4,
+      perPage,
+      page,
+      limit,
       sort
     }
   });
-  return res.body.data.Page.reviews;
+  const { pageInfo, edges } = res.body.data.Media.reviews;
+  const reviews = edges.map((edge) => {
+    const { node } = edge;
+    return { ...node };
+  });
+  return {pageInfo, reviews};
 }
 
 export async function getMediaTrend(mediaId: number | string): Promise<MediaTrend | undefined> {
@@ -136,22 +173,38 @@ export async function getMediaTrend(mediaId: number | string): Promise<MediaTren
   return res.body.data.MediaTrend;
 }
 
-export async function getRelatedMedia(id: number | string): Promise<Media[]> {
-  const idToNum = Number(id)
+export async function getFranchise({
+  mediaId,
+}: {
+  mediaId: string | number
+
+}): Promise<Media[]> {
+  const idToNum = Number(mediaId)
   const res = await anilistFetch<{
     data: {
       Media: {
-        relations: Connection<Media>
+        relations: {
+          edges: {
+            node: Media
+            relationType: string
+          }[]
+        }
       }
     }, variables: {
       id: number
     }}>({
-    query: getRelatedMediaQuery,
+    query: getFranchiseQuery,
     variables: {
       id: idToNum,
     }
   });
-  return removeEdgesAndNodes(res.body.data.Media.relations);
+  const { edges } = res.body.data.Media.relations;
+  const franchise = edges.map((edge) => {
+    const { node, relationType } = edge;
+    return { ...node, relationType };
+  });
+
+  return franchise;
 }
 
 export async function getMedia(id: number | string): Promise<Media | undefined> {

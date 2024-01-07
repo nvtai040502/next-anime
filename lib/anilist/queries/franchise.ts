@@ -1,9 +1,9 @@
 import coverImageFragment from "../fragments/image";
 
-export const getRelatedMediaQuery = /* GraphQL */ `
-  query GetRelatedMedia($id: Int) {
+export const getFranchiseQuery = /* GraphQL */ `
+  query getFranchise($id: Int) { 
     Media(id: $id) {
-      relations{
+      relations {
         edges {
           relationType
           node {

@@ -1,30 +1,23 @@
+import reviewFragment from "../fragments/review";
 
-export const getMediaReviewsPageQuery = /* GraphQL */ `
-  query getMediaReviewsPage($perPage: Int, $mediaId: Int, $sort: [ReviewSort]) {
-    Page(perPage: $perPage) {
-    pageInfo {
-      total
-      currentPage
-      lastPage
-      hasNextPage
-      perPage
-    }
-    reviews(mediaId: $mediaId, sort: $sort) {
-      id
-      summary
-      rating
-      ratingAmount
-      userRating
-      body
-      user {
-        id
-        name
-        avatar {
-          large
-          medium
+export const getReviewsQuery = /* GraphQL */ `
+  query GetReviews($mediaId: Int, $page: Int, $perPage: Int, $sort: [ReviewSort], $limit: Int) {
+    Media(id: $mediaId) {
+      reviews(page: $page, perPage: $perPage, limit: $limit, sort: $sort) {
+        pageInfo {
+          total
+          perPage
+          currentPage
+          lastPage
+          hasNextPage
+        }
+        edges {
+          node {
+            ...review
+          }
         }
       }
     }
   }
-  }
+  ${reviewFragment}
 `;
