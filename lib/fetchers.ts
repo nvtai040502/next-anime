@@ -1,10 +1,10 @@
 import { MediaListWithSortType } from "@/types"
-import { getPage } from "./anilist"
+import { getMediaList } from "./anilist"
 import { Media, MediaSort, MediaType } from "@/types/anilist"
 import { getEpisodes, getSources } from "./anify"
 
 export async function getMediaWithWatchIdList (page: number, sort: MediaSort, perPage: number): Promise<Media[]> {
-  const { media: mediaList } = await getPage({
+  const { media: mediaList } = await getMediaList({
     page,
     sort,
     perPage,
@@ -27,17 +27,17 @@ export async function getMediaWithWatchIdList (page: number, sort: MediaSort, pe
 
 
 export async function getMediaListTrending (perPage:number, type: MediaType): Promise<Media[]> {
-  const {media: mediaListTrending} = await getPage({sort: "TRENDING_DESC", perPage: perPage, type: type})
+  const {media: mediaListTrending} = await getMediaList({sort: "TRENDING_DESC", perPage: perPage, type: type})
   return mediaListTrending
 }
 
 export async function getMediaListPopular (perPage:number, type: MediaType): Promise<Media[]> {
-  const {media: mediaListPopular} = await getPage({sort: "POPULARITY_DESC", perPage: perPage, type: type})
+  const {media: mediaListPopular} = await getMediaList({sort: "POPULARITY_DESC", perPage: perPage, type: type})
   return mediaListPopular
 }
 
 export async function getMediaListNewest (perPage:number, type: MediaType): Promise<Media[]> {
-  const {media: mediaListNewest} = await getPage({sort: "UPDATED_AT_DESC", perPage: perPage, type: type})
+  const {media: mediaListNewest} = await getMediaList({sort: "UPDATED_AT_DESC", perPage: perPage, type: type})
   return mediaListNewest
 }
 

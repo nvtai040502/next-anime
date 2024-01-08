@@ -20,7 +20,7 @@ export function MediaCardBody({media}: MediaCardBodyProps) {
   return (
     <Card>
       <Link href={`/info/${media.id}`}>
-        <CardHeader className="p-0">
+      <CardHeader className="border-b p-0">
           <AspectRatio ratio={4 / 3}>
             {coverImage ? (
               <Image
@@ -33,7 +33,6 @@ export function MediaCardBody({media}: MediaCardBodyProps) {
             ) : (
               <PlaceholderImage className="rounded-none" asChild />
             )}
-          
           </AspectRatio>
         </CardHeader>
         <span className="sr-only">{title}</span>

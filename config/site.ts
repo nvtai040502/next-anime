@@ -1,118 +1,154 @@
-import { Icons } from "@/components/icons"
-import { NavItem } from "@/types"
-export type SiteConfig = {
-  name: string
-  description: string
-  url: string
-  ogImage: string
-  links: {
-    twitter: string
-    github: string
-  }
-  mainNav: NavItem[]
-  profileDropdownItems: NavItem[]
-  footerItems: NavItem[]
-  socialLinks: NavItem[]
-}
+import type { FooterItem, MainNavItem } from "@/types"
+
+
+export type SiteConfig = typeof siteConfig
 
 const links = {
-  github: "https://github.com/nvtai040502",
-  twitter: "https://twitter.com/NVTai0452"
+  twitter: "https://twitter.com/sadmann17",
+  github: "https://github.com/sadmann7/skateshop",
+  githubAccount: "https://github.com/sadmann7",
+  discord: "https://discord.com/users/sadmann7",
+  calDotCom: "https://cal.com/sadmann7",
 }
 
-export const siteConfig: SiteConfig = {
-  name: "Netflix Web",
+export const siteConfig = {
+  name: "Skateshop",
   description:
-    "An open source Netflix clone built using the new app router, server components, trpc, and everything new in Next.js 13.",
-  url: "https://netflx-web.vercel.app",
-  ogImage: "https://netflx-web.vercel.app/opengraph-image.png",
+    "An open source e-commerce skateshop build with everything new in Next.js.",
+  url: "https://skateshop.sadmn.com",
+  ogImage: "https://skateshop.sadmn.com/opengraph-image.png",
   links,
   mainNav: [
     {
-      title: "Home",
-      href: "/",
-      icon: "home"
-    },
-    {
-      title: "Anime",
-      href: "/anime",
-      icon: "tvShow"
-    },
-    {
-      title: "Manga",
-      href: "/manga",
-      icon: "movie",
-    },
-    {
-      title: "New & Popular",
-      href: "/new-and-popular",
-      icon: "trendingUp",
-    },
-    {
-      title: "My List",
-      href: "/my-list",
-      icon: "list",
-    },
-    {
-      title: "Notifications",
-      icon: "bell",
-    },
-  ],
-  profileDropdownItems: [
-    {
-      title: "Manage Profiles",
-      href: "/profiles",
-      icon: "edit",
+      title: "Lobby",
+      items: [
+        {
+          title: "Products",
+          href: "/products",
+          description: "All the products we have to offer.",
+          items: [],
+        },
+        {
+          title: "Build a Board",
+          href: "/build-a-board",
+          description: "Build your own custom skateboard.",
+          items: [],
+        },
+        {
+          title: "Blog",
+          href: "/blog",
+          description: "Read our latest blog posts.",
+          items: [],
+        },
+      ],
     },
     
+  ] satisfies MainNavItem[],
+  footerNav: [
     {
-      title: "Account",
-      href: "/account",
-      icon: "user",
+      title: "Credits",
+      items: [
+        {
+          title: "OneStopShop",
+          href: "https://onestopshop.jackblatch.com",
+          external: true,
+        },
+        {
+          title: "Acme Corp",
+          href: "https://acme-corp.jumr.dev",
+          external: true,
+        },
+        {
+          title: "craft.mxkaske.dev",
+          href: "https://craft.mxkaske.dev",
+          external: true,
+        },
+        {
+          title: "Taxonomy",
+          href: "https://tx.shadcn.com/",
+          external: true,
+        },
+        {
+          title: "shadcn/ui",
+          href: "https://ui.shadcn.com",
+          external: true,
+        },
+      ],
     },
     {
-      title: "Help Center",
-      href: "/help-center",
-      icon: "help",
+      title: "Help",
+      items: [
+        {
+          title: "About",
+          href: "/pages/about",
+          external: false,
+        },
+        {
+          title: "Contact",
+          href: "/pages/Contact",
+          external: false,
+        },
+        {
+          title: "Terms",
+          href: "/pages/terms",
+          external: false,
+        },
+        {
+          title: "Privacy",
+          href: "/pages/privacy",
+          external: false,
+        },
+      ],
     },
     {
-      title: "Sign Out of Netflix",
-    },
-  ],
-  footerItems: [
-    { title: "Audio Description", href: "/" },
-    { title: "Help Center", href: "/" },
-    { title: "Gift Cards", href: "/" },
-    { title: "Media Center", href: "/" },
-    { title: "Investor Relations", href: "/" },
-    { title: "Jobs", href: "/" },
-    { title: "Terms of Use", href: "/terms-of-use" },
-    { title: "Privacy", href: "/" },
-    { title: "Legal Notices", href: "/" },
-    { title: "Cookie Preferences", href: "/" },
-    { title: "Corporate Information", href: "/" },
-    { title: "Contact Us", href: "/" },
-  ],
-  socialLinks: [
-    {
-      title: "Facebook",
-      href: "https://www.facebook.com/NetflixAsia",
-      icon: "facebook",
-    },
-    {
-      title: "Instagram",
-      href: "https://www.instagram.com/netflixasia/",
-      icon: "instagram",
+      title: "Social",
+      items: [
+        {
+          title: "Twitter",
+          href: links.twitter,
+          external: true,
+        },
+        {
+          title: "GitHub",
+          href: links.githubAccount,
+          external: true,
+        },
+        {
+          title: "Discord",
+          href: links.discord,
+          external: true,
+        },
+        {
+          title: "cal.com",
+          href: links.calDotCom,
+          external: true,
+        },
+      ],
     },
     {
-      title: "Twitter",
-      href: "https://twitter.com/NetflixAsia",
-      icon: "twitter",
+      title: "Lofi",
+      items: [
+        {
+          title: "beats to study to",
+          href: "https://www.youtube.com/watch?v=jfKfPfyJRdk",
+          external: true,
+        },
+        {
+          title: "beats to chill to",
+          href: "https://www.youtube.com/watch?v=rUxyKA_-grg",
+          external: true,
+        },
+        {
+          title: "a fresh start",
+          href: "https://www.youtube.com/watch?v=rwionZbOryo",
+          external: true,
+        },
+        {
+          title: "coffee to go",
+          href: "https://www.youtube.com/watch?v=2gliGzb2_1I",
+          external: true,
+        },
+      ],
     },
-    {
-      title: "Youtube",
-      href: "https://www.youtube.com/channel/UCZoC-XeDO7HxbAdeCaRPPCw/videos",
-      icon: "youtube",
-    },
-  ],
+  ] satisfies FooterItem[],
 }

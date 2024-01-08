@@ -6,7 +6,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { MediaListWithSortType } from "@/types";
 import { useEffect, useState, useTransition } from "react";
 import Autoplay from "embla-carousel-autoplay"
-import { getPage } from "@/lib/anilist";
+import { getMediaList } from "@/lib/anilist";
 import { ProductCardSkeleton } from "@/components/skeletons/hero";
 
 interface MediaListHeroCarouselProps {

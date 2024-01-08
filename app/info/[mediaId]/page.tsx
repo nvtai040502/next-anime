@@ -1,6 +1,5 @@
 import GenreCard from "@/components/cards/genre";
 import CharactersCarousel from "@/components/carousel/characters";
-import MediaListBodyCarousel from "@/components/carousel/media-list/body";
 import { Description } from "@/components/description";
 import MediaBodyPage from "@/components/pages/media/body";
 import MediaHeroPage from "@/components/pages/media/hero";

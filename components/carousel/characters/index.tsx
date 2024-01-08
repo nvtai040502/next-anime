@@ -1,6 +1,6 @@
 import React from 'react';
 import { Character, Media, MediaSort, MediaType } from '@/types/anilist';
-import BodyCarouselBase from '../_base';
+import CarouselShell from '../../shells/carousel-shell';
 import { Carousel, CarouselContent, CarouselItem } from '../../ui/carousel';
 import { CharacterCard } from '../../cards/character';
 import CharactersCarouselItems from './items';
@@ -19,9 +19,9 @@ const CharactersCarousel = ({
   
   return (
     
-    <BodyCarouselBase title={title} link={link}>
+    <CarouselShell title={title} link={link}>
       <CharactersCarouselItems characters={characters} />
-    </BodyCarouselBase>
+    </CarouselShell>
   );
 };
 

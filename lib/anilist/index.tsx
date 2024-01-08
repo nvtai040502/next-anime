@@ -1,10 +1,12 @@
-import { getMediaQuery, getPageQuery } from "./queries/media";
+import { getMediaQuery, getPageQuery as getMediaListQuery } from "./queries/media";
 import { ANILIST_ENDPOINT } from "../constants";
 import { AnilistCharacter, AnilistReview, Character, CharacterRole, CharacterSort, Media, MediaOperation, MediaSort, MediaTrend, MediaTrendOperation, MediaType, Page, PageInfo, PageOperation, Review, ReviewSortKey, VoiceActor } from "@/types/anilist";
 import { getMediaTrendQuery } from "./queries/media-trend";
 import { getReviewsQuery } from "./queries/review";
 import { getFranchiseQuery } from "./queries/franchise";
 import { getCharactersQuery } from "./queries/character";
+import { getMediaSearchQuery } from "./queries/search-media";
+import { getAllGenresQuery } from "./queries/genres";
 
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
 
@@ -61,6 +63,49 @@ export async function anilistFetch<T>({
     };
   }
 }
+
+export async function getMediaSearch({
+  query,
+  type,
+  page,
+  sort,
+  perPage
+}: {
+  query: string
+  type: MediaType
+  page: number
+  perPage: number
+  sort: MediaSort
+}): Promise<{
+  pageInfo: PageInfo,
+  media: Media[]
+}> {
+  const res = await anilistFetch<{
+    data: {
+      Page: {
+        pageInfo: PageInfo
+        media: Media[]
+      }
+    }, variables: {
+      search: string
+      type: MediaType
+      sort: MediaSort
+      page: number
+      perPage: number
+    }}>({
+    query: getMediaSearchQuery,
+    variables: {
+      search: query,
+      type,
+      page,
+      perPage,
+      sort
+    }
+  });
+
+  return res.body.data.Page;
+}
+
 export async function getCharacters({
   mediaId,
   page,
@@ -221,7 +266,7 @@ export async function getMedia(id: number | string): Promise<Media | undefined> 
 }
 
 
-export async function getPage({
+export async function getMediaList({
   page=1, 
   perPage,
   sort,
@@ -231,9 +276,12 @@ export async function getPage({
   page?: number,
   perPage: number,
   type: MediaType
-}): Promise<Page> {
+}): Promise<{
+  pageInfo: PageInfo,
+  media: Media[]
+}> {
   const res = await anilistFetch<PageOperation>({
-    query: getPageQuery,
+    query: getMediaListQuery,
     variables: {
       sort,
       page,
@@ -242,5 +290,12 @@ export async function getPage({
     }
   });
   return res.body.data.Page;
+}
+
+export async function getAllGenres(): Promise<string[]> {
+  const res = await anilistFetch<{data: {GenreCollection: string[]}}>({
+    query: getAllGenresQuery,
+  });
+  return res.body.data.GenreCollection;
 }
 

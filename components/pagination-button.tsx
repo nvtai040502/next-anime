@@ -6,7 +6,7 @@ import { MediaSort, MediaType, PageInfo } from "@/types/anilist"
 import { Icons } from "./icons"
 import { FIRST_PAGE, NEAREST_PAGES } from "@/lib/constants"
 import { useEffect, useState, useTransition } from "react"
-import { getPage } from "@/lib/anilist"
+import { getMediaList } from "@/lib/anilist"
 import { ProductCardSkeleton } from "./skeletons/hero"
 
 interface PaginationButtonProps extends React.HTMLAttributes<HTMLDivElement> {

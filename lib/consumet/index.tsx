@@ -1,6 +1,7 @@
 import axios from "axios";
 import { CONSUMET_API } from "../constants";
 import { AnimeInfo, AnimeProvider, AnimeStreamingLink, MangaInfo, MangaProvider, MangaStreamingLink, RecentEpisodes } from "@/types/consumet";
+import { Media } from "@/types/anilist";
 
 export const getMangaInfo = async ({
   mangaId,
@@ -57,6 +58,9 @@ export const getAnimeStreamingLink = async ({
     return undefined;
   }
 };
+
+
+
 
 export const getRecentEpisodes = async ({
   page=1,

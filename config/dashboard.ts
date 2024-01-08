@@ -1,20 +1,34 @@
-import { DashboardConfig } from "@/types"
+import { type SidebarNavItem } from "@/types"
+
+export interface DashboardConfig {
+  sidebarNav: SidebarNavItem[]
+}
 
 export const dashboardConfig: DashboardConfig = {
-  mainNav: [
+  sidebarNav: [
     {
-      title: "Products",
-      href: "/products",
+      title: "Account",
+      href: "/dashboard/account",
+      icon: "add",
+      items: [],
     },
     {
-      title: "About",
-      href: "/about",
-      disabled: true
+      title: "Stores",
+      href: "/dashboard/stores",
+      icon: "store",
+      items: [],
     },
     {
-      title: "Blog",
-      href: "/blog",
-      disabled: false
-    }
+      title: "Billing",
+      href: "/dashboard/billing",
+      icon: "credit",
+      items: [],
+    },
+    {
+      title: "Purchases",
+      href: "/dashboard/purchases",
+      icon: "dollarSign",
+      items: [],
+    },
   ],
 }

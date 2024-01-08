@@ -1,54 +1,38 @@
-"use client"
-import { Button, buttonVariants } from "@/components/ui/button"
-
 import Link from "next/link"
-import { cn } from "@/lib/utils"
-import { dashboardConfig } from "@/config/dashboard"
-import React from "react"
-import { siteConfig } from "@/config/site"
-import { Skeleton } from "../ui/skeleton"
-import { MainNav } from "./navbar"
-import { Search } from "lucide-react"
 
-export function SiteHeader() {
-  const [isScrolled, setIsScrolled] = React.useState(false)
-  // change background color on scroll
-  React.useEffect(() => {
-    const changeBgColor = () => {
-      window.scrollY > 0 ? setIsScrolled(true) : setIsScrolled(false)
-    }
-    window.addEventListener("scroll", changeBgColor)
-    return () => window.removeEventListener("scroll", changeBgColor)
-  }, [isScrolled])
+import { dashboardConfig } from "@/config/dashboard"
+import { siteConfig } from "@/config/site"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { Icons } from "@/components/icons"
+import { MainNav } from "@/components/layout/main-nav"
+import { MobileNav } from "@/components/layout/mobile-nav"
+
+interface SiteHeaderProps {
+}
+
+export function SiteHeader({ 
+
+ }: SiteHeaderProps) {
 
   return (
-    <header
-      aria-label="Header"
-      className={cn(
-        "sticky top-0 z-40 w-full",
-        isScrolled ? "bg-neutral-900 shadow-md" : "bg-transparent"
-      )}
-    >
-      <nav className="container flex h-16 max-w-screen-2xl items-center justify-between space-x-4 sm:space-x-0">
+    <header className="sticky top-0 z-50 w-full border-b bg-background">
+      <div className="container flex h-16 items-center">
         <MainNav items={siteConfig.mainNav} />
-        <div className="flex items-center space-x-1.5">
-          <Search />
-          <Link
-            aria-label="Sign in"
-            href="/"
-            className={cn(
-              buttonVariants({
-                variant: "brand",
-                size: "auto",
-                className: "h-auto rounded",
-              })
-            )}
-          >
+        <MobileNav
+          mainNavItems={siteConfig.mainNav}
+          sidebarNavItems={dashboardConfig.sidebarNav}
+        />
+        <div className="flex flex-1 items-center justify-end space-x-4">
+          <nav className="flex items-center space-x-2">
+            <Icons.search />
+            <Button size="sm">
             Sign In
-          </Link>
+            <span className="sr-only">Sign In</span>
+            </Button>
+          </nav>
         </div>
-      </nav>
+      </div>
     </header>
-   
   )
 }

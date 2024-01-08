@@ -1,7 +1,7 @@
 import { MediaListGrid } from "@/components/grid/media-list-grid";
 import { PaginationButton } from "@/components/pagination-button";
 import { ProductCardSkeleton } from "@/components/skeletons/hero";
-import { getPage } from "@/lib/anilist";
+import { getMediaList } from "@/lib/anilist";
 
 import { FIRST_PAGE, MAX_ITEMS_PER_PAGE, defaultSort, sorting } from "@/lib/constants";
 import { searchParamsSchema } from "@/lib/validations/params";
@@ -13,7 +13,7 @@ interface BodyMediaPageProps {
   page?: number
 }
 const BodyMediaPage = async ({sort, page, mediaType}:BodyMediaPageProps) => {
-  const { media: mediaList, pageInfo } = await getPage({
+  const { media: mediaList, pageInfo } = await getMediaList({
     page: page || FIRST_PAGE,
     sort,
     perPage:MAX_ITEMS_PER_PAGE,

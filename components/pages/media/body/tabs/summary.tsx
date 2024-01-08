@@ -2,7 +2,6 @@ import { CharacterCard } from "@/components/cards/character";
 import GenreCard from "@/components/cards/genre";
 import ReviewCard from "@/components/cards/review";
 import CharactersCarousel from "@/components/carousel/characters";
-import MediaListBodyCarousel from "@/components/carousel/media-list/body";
 import { Description } from "@/components/description";
 import Ranking from "@/components/ranking";
 import { Separator } from "@/components/ui/separator";
@@ -63,8 +62,6 @@ const SummaryTabPage = async ({
         <p> duration {media.duration}</p>
         <p> episodes {media.episodes}</p>
       </div>
-      <MediaListBodyCarousel mediaList={franchise.slice(0, MAX_ITEMS_CAROUSEL_BODY)} 
-      title="Hello" />
       <div>
         {fewReviews.map((review) => (
           <ReviewCard review={review} key={review.id}/>
