@@ -22,7 +22,7 @@ export default function CarouselShell({
   ...props
 }: CarouselShellProps) {
   return (
-    <section className={cn("max-w-6xl mx-auto space-y-6", className)} {...props}>
+    <section className={cn("space-y-4 bg-red-500", className)} {...props}>
       <div className="flex items-center justify-between gap-4">
         <div className="max-w-[58rem] flex-1 space-y-1">
           <h2 className="font-heading text-3xl font-bold leading-[1.1] md:text-4xl">

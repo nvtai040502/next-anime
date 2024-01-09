@@ -223,7 +223,9 @@ export async function getFranchise({
 }: {
   mediaId: string | number
 
-}): Promise<Media[]> {
+}): Promise<{
+  media: Media[]
+}> {
   const idToNum = Number(mediaId)
   const res = await anilistFetch<{
     data: {
@@ -249,7 +251,7 @@ export async function getFranchise({
     return { ...node, relationType };
   });
 
-  return franchise;
+  return {media: franchise};
 }
 
 export async function getMedia(id: number | string): Promise<Media | undefined> {

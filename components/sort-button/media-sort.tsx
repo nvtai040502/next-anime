@@ -5,13 +5,21 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 import { cn, createUrl } from "@/lib/utils";
-import { MediaSorting } from "@/lib/constants";
+import { MediaSorting, ReviewSorting } from "@/lib/constants";
+import { SortItemType } from "@/types";
 
-const MediaSortButton = ({side}: {side?: "top" | "right" | "bottom" | "left"}) => {
+const SortingButton = ({
+  side,
+  sortType
+}: {
+  side?: "top" | "right" | "bottom" | "left"
+  sortType: SortItemType
+}) => {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const [isPending, startTransition] = useTransition()
+  const sorting = sortType === "Media" ? MediaSorting : ReviewSorting
   const sort = searchParams.get("sort")
   return ( 
     <DropdownMenu>
@@ -24,7 +32,7 @@ const MediaSortButton = ({side}: {side?: "top" | "right" | "bottom" | "left"}) =
       <DropdownMenuContent align="start" className="w-48" side={side}>
         <DropdownMenuLabel>Sort by</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {MediaSorting.map((item, i) => (
+        {sorting.map((item, i) => (
           <DropdownMenuItem
             key={i}
             className={cn(item.slug === sort && "bg-accent font-bold")}
@@ -36,7 +44,9 @@ const MediaSortButton = ({side}: {side?: "top" | "right" | "bottom" | "left"}) =
                 } else {
                   newSearchParams.delete('sort');
                 }
-                router.push(createUrl(pathname, newSearchParams));
+                router.push(createUrl(pathname, newSearchParams), {
+                  scroll: false,
+                });
               })
             }}
           >
@@ -48,4 +58,4 @@ const MediaSortButton = ({side}: {side?: "top" | "right" | "bottom" | "left"}) =
    );
 }
  
-export default MediaSortButton;
+export default SortingButton;

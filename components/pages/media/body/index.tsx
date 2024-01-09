@@ -26,19 +26,19 @@ const MediaBodyPage = async ({
       <TabsTrigger value="franchise">Franchise</TabsTrigger>
     </TabsList>
     <TabsContent value="summary">
-      <SummaryTabPage media={media} />
+      {/* <SummaryTabPage media={media} /> */}
     </TabsContent>
     <TabsContent value="episodes">
-      <EpisodesTabPage media={media}/>
+      {/* <EpisodesTabPage media={media}/> */}
     </TabsContent>
     <TabsContent value="characters">
-      <CharactersTabPage media={media}/>
+      {/* <CharactersTabPage media={media}/> */}
     </TabsContent>
     <TabsContent value="reviews">
-      <ReviewsTabPage media={media}/>
+      {/* <ReviewsTabPage media={media}/> */}
     </TabsContent>
     <TabsContent value="franchise">
-      <FranchiseTabPage media={media}/>
+      {/* <FranchiseTabPage media={media}/> */}
     </TabsContent>
   </Tabs>
    );

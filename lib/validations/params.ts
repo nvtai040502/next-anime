@@ -2,6 +2,7 @@ import * as z from "zod"
 
 
 export const searchParamsSchema = z.object({
-  page: z.coerce.number().optional(),
+  page: z.string().optional(),
   sort: z.string().optional(),
 })
+

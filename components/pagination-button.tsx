@@ -11,6 +11,7 @@ import { ProductCardSkeleton } from "./skeletons/hero"
 
 interface PaginationButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   pageInfo: PageInfo
+  isScroll?: boolean
   nearest_pages?: number
 }
 function getNearestPages (currentPage: number, count: number, totalPage: number): number[] {
@@ -30,6 +31,7 @@ function getNearestPages (currentPage: number, count: number, totalPage: number)
 export function PaginationButton({
   pageInfo,
   nearest_pages=NEAREST_PAGES,
+  isScroll=true,
   className,
   ...props
 }: PaginationButtonProps) {
@@ -51,7 +53,9 @@ export function PaginationButton({
       } else {
         newSearchParams.delete("page");
       }
-      router.push(createUrl(pathname, newSearchParams));
+      router.push(createUrl(pathname, newSearchParams), {
+        scroll: isScroll
+      });
     });
   };
 
@@ -104,13 +108,7 @@ export function PaginationButton({
         variant="outline"
         size="icon"
         className="h-8 w-8"
-        onClick={() => {
-          startTransition(() => {
-            const newSearchParams = new URLSearchParams(searchParams);
-            newSearchParams.set("page", `${pageInfo.currentPage + 1}`)
-            router.push(createUrl(pathname, newSearchParams));
-          })
-        }}
+        onClick={() => handlePagination(pageInfo.currentPage + 1)}
         disabled={!pageInfo.hasNextPage || isPending}
       >
         <Icons.chevronRight className="h-4 w-4" aria-hidden="true" />

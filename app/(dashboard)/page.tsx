@@ -15,6 +15,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { GenresCarousel } from "@/components/carousel/genres";
+import EmblaCarousel from "@/components/carousel/_index";
 
 export default async function DashboardPage() {
     const genresPromise = getAllGenres()
@@ -94,7 +95,7 @@ export default async function DashboardPage() {
           // linkText="View all"
           className="py-8 md:py-10 lg:py-12 "
         >
-          <MediaListBodyCarousel mediaListPromise={animeListTrendingPromise} />
+          <EmblaCarousel mediaListPromise={animeListTrendingPromise}/>
         </CarouselShell>
       </Suspense>
 
@@ -104,7 +105,7 @@ export default async function DashboardPage() {
           href="/stores"
           className="py-8 md:py-10 lg:py-12 "
         >
-          <MediaListBodyCarousel mediaListPromise={animeListPopularPromise} />
+          <EmblaCarousel mediaListPromise={animeListTrendingPromise}/>
         </CarouselShell>
       </Suspense>
 
@@ -114,7 +115,7 @@ export default async function DashboardPage() {
           href="/stores"
           className="py-8 md:py-10 lg:py-12 "
         >
-          <MediaListBodyCarousel mediaListPromise={animeListNewPromise} />
+          <EmblaCarousel mediaListPromise={animeListTrendingPromise}/>
         </CarouselShell>
       </Suspense>
 
@@ -125,7 +126,7 @@ export default async function DashboardPage() {
           href="/stores"
           className="py-8 md:py-10 lg:py-12 "
         >
-          <GenresCarousel genresPromise={genresPromise} />
+          <EmblaCarousel mediaListPromise={animeListTrendingPromise}/>
         </CarouselShell>
       </Suspense>
 
@@ -135,7 +136,7 @@ export default async function DashboardPage() {
           href="/stores"
           className="py-8 md:py-10 lg:py-12 "
         >
-          <MediaListBodyCarousel mediaListPromise={mangaListTrendingPromise} />
+          <EmblaCarousel mediaListPromise={animeListTrendingPromise}/>
         </CarouselShell>
       </Suspense>
 
@@ -147,7 +148,7 @@ export default async function DashboardPage() {
           linkText="View all stores"
           className="py-8 md:py-10 lg:py-12 "
         >
-          <MediaListBodyCarousel mediaListPromise={mangaListPopularPromise} />
+          <EmblaCarousel mediaListPromise={animeListTrendingPromise}/>
         </CarouselShell>
       </Suspense>
 
@@ -158,7 +159,7 @@ export default async function DashboardPage() {
           linkText="View all stores"
           className="py-8 md:py-10 lg:py-12 "
         >
-          <MediaListBodyCarousel mediaListPromise={mangaListNewPromise} />
+          <EmblaCarousel mediaListPromise={animeListTrendingPromise}/>
         </CarouselShell>
       </Suspense>
 

@@ -27,7 +27,15 @@ export const MediaSorting: MediaSortItem[] = [
   { title: 'Newest', slug: 'new', sortKey: "UPDATED_AT_DESC"},
 ];
 
+export const defaultReviewSort: ReviewSortItem = {
+  title: 'Hightest Rate', 
+  slug: null,
+  sortKey: "RATING"
+}
+
 export const ReviewSorting: ReviewSortItem[] = [
-  { title: 'Hightest Rate', sortKey: "RATING"},
-  { title: 'Recent', sortKey: "UPDATED_AT"},
+  defaultReviewSort,
+  { title: 'Recent', slug: "recent",sortKey: "UPDATED_AT"},
 ]
+
+
